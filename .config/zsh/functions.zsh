@@ -4,10 +4,10 @@
 function shutdown() {
 	# Make sure TMUX isn't running in the background somewhere
 	tmux ls 2>> /dev/null 1>>/dev/null
-	tmux_n_running=$?
-	if [ $tmux_n_running == 0  ]; then
+	local tmux_ret=$?
+	if (( $tmux_ret == 0  )); then
 		echo tmux is running, not shutting down
-		exit -1
+		return -1
 	fi
 
 	# Play Shutdown sound
@@ -17,7 +17,7 @@ function shutdown() {
 			sleep 0.5
 	fi
 
-	shutdown now
+	/usr/bin/shutdown now
 }
 
 function reboot() {
