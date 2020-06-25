@@ -109,6 +109,24 @@ function c {
 	cd $(echo $bookmark | awk -F ':' '{print $2}')
 }
 
+function _c() {
+	function _commands {
+		local -a commands
+		commands=(
+			$(cat $HOME/.config/ranger/bookmarks)
+			$(cat $HOME/.config/zsh/bookmarks)
+		)
+
+		_describe 'command' commands
+	}
+
+	_arguments -C \
+		"1: :_commands" \
+		"*::arg:->args"
+}
+
+compdef _c c
+
 # ==============================================================================
 # Create Bookmark
 # ==============================================================================
