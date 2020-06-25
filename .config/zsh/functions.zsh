@@ -186,3 +186,17 @@ function lensort() {
 		awk '{ print length(), $0 | "sort -n -r | cut -d\\  -f2-" }'
 	fi
 }
+
+# ==============================================================================
+# Find Symbols in Libraries
+# ==============================================================================
+function findsym() {
+	if [[ $# -ne 1 ]]; then
+		echo "usage: findsym <sym>"
+		return -1
+	fi
+	for i in $(find . -name "*.so")
+	do
+		nm $i 2>/dev/null | awk '{print "'$i' --- " $0}' | grep $1
+	done
+}
