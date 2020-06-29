@@ -2,3 +2,4 @@
 
 RUST_BACKTRACE=1
 CMAKE_EXPORT_COMPILE_COMMANDS=ON
+source ~/programming/sdk/emscripten/emsdk/emsdk_env.sh > /dev/null
