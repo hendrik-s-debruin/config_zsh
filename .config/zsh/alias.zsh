@@ -55,6 +55,7 @@ alias copy='xclip -selection clipboard'
 alias xmod='xmodmap ~/.Xmodmap'
 alias CAPS='xdotool key Caps_Lock'
 alias caps='CAPS'
+alias k='figlet k'
 
 # ==============================================================================
 # System
