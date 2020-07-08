@@ -1,30 +1,3 @@
-#  =============================================================================
-#  Set brightness
-#  =============================================================================
-functions backlight() {
-	if [[ $@ == "" ]]; then
-		echo "error, argument must be a positive integer"
-		return -1
-	fi
-
-	if ! [[ $1 =~ '^[0-9]+$' ]]; then
-		echo "error, argument must be a positive integer"
-		return -1
-	fi
-
-	if [ $1 -gt 100 ]; then
-		echo "greater 100"
-		let percentage=100
-	elif [ $1 -le 0 ]; then
-		echo "less 0"
-		let percentage=1
-	else
-		let percentage=$1
-	fi
-
-	echo $(( 120000 * $percentage / 100 )) > /sys/class/backlight/intel_backlight/brightness
-}
-
 # ==============================================================================
 # Startup and Shutdown
 # ==============================================================================
