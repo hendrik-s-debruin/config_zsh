@@ -98,7 +98,7 @@ function c {
 
 	local bookmark=$(grep "^$1" <$ranger_bookmarks)
 	if [[ $bookmark == "" ]]; then
-		local bookmark=$(grep "^$1" <$zsh_bookmarks)
+		local bookmark=$(grep "^$1:" <$zsh_bookmarks)
 		if [[ $bookmark == "" ]]; then
 			echo Bookmark not found
 			print_bookmarks
