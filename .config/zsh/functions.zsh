@@ -218,3 +218,10 @@ function findsym() {
 		nm $i 2>/dev/null | awk '{print "'$i' --- " $0}' | grep $1
 	done
 }
+
+# ==============================================================================
+# Strip Comments from C/C++ files
+# ==============================================================================
+function cstrip() {
+	gcc -fpreprocessed -dD -E -P $1 | clang-format -style=file -fallback-style=LLVM
+}
