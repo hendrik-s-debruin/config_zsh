@@ -40,6 +40,7 @@ alias cmatlab="rlwrap -a matlab -nodesktop -nosplash"
 alias top="htop"
 alias ast="clang -Xclang -ast-dump -fsyntax-only"
 alias gitgrs="git log --graph --oneline --branches --color | head -n 50"
+alias glog="git log | vim -"
 
 # ==============================================================================
 # Convenience
