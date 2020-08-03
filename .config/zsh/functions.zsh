@@ -213,7 +213,7 @@ function findsym() {
 		echo "usage: findsym <sym>"
 		return -1
 	fi
-	for i in $(find . -name "*.so")
+	for i in $(find . -name "*.so" -o -name "*.a")
 	do
 		nm $i 2>/dev/null | awk '{print "'$i' --- " $0}' | grep $1
 	done
