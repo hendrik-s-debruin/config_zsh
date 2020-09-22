@@ -102,7 +102,7 @@ function c {
 		if [[ $bookmark == "" ]]; then
 			echo Bookmark not found
 			print_bookmarks
-			return
+			return 1
 		fi
 	fi
 
