@@ -79,11 +79,11 @@ function prompt_char {
 	if [[ $exit_status == 0 ]]; then
 		# success
 		# echo $(bold_string $(color_string '> ' a3be8c))
-		echo "%{$fg[green]%}>"
+		echo "%{$fg[green]%}λ"
 	else
 		# failure
 		# echo $(bold_string $(color_string "[$exit_status]>" bf616a))
-		echo "%{$fg[red]%}[$exit_status]>"
+		echo "%{$fg[red]%}[$exit_status]λ"
 	fi
 }
 
