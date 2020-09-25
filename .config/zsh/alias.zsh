@@ -18,8 +18,9 @@ alias clc="clear"
 # Edit specific files
 # ==============================================================================
 alias vimrc="vim ~/.vimrc"
-alias i3conf='vim ~/.config/i3/config'
+alias i3rc='vim ~/.config/i3/config'
 alias rc="vim ~/.zshrc"
+alias gitrc="vim ~/.gitconfig"
 
 # ==============================================================================
 # Prettify standard commands
