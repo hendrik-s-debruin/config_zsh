@@ -21,6 +21,7 @@ alias vimrc="vim ~/.vimrc"
 alias i3rc='vim ~/.config/i3/config'
 alias rc="vim ~/.zshrc"
 alias gitrc="vim ~/.gitconfig"
+alias gdbrc="vim ~/.gdbinit"
 
 # ==============================================================================
 # Prettify standard commands
