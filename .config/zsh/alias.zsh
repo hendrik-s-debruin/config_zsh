@@ -45,6 +45,7 @@ alias ast="clang -Xclang -ast-dump -fsyntax-only"
 alias gitgrs="git log --graph --oneline --branches --color | head -n 50"
 alias glog="git log | vim -"
 alias g="git"
+alias r="ranger"
 
 # ==============================================================================
 # Convenience
@@ -61,6 +62,7 @@ alias xmod='xmodmap ~/.Xmodmap'
 alias CAPS='xdotool key Caps_Lock'
 alias caps='CAPS'
 alias k='figlet k'
+alias grsr='git log --oneline --graph --decorate --branches --remotes'
 
 # ==============================================================================
 # System
