@@ -1,5 +1,8 @@
 # This file configures the tab completion of the zsh shell
 
+# plugin to add predictive suggestions
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 autoload -Uz compinit
 compinit
 
