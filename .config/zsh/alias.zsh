@@ -46,6 +46,7 @@ alias gitgrs="git log --graph --oneline --branches --color | head -n 50"
 alias glog="git log | vim -"
 alias g="git"
 alias r="ranger"
+alias v="vim"
 
 # ==============================================================================
 # Convenience
