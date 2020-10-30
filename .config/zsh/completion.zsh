@@ -4,7 +4,7 @@
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Fzf completions
-[ -f ~/.fzf/shell/completion.zsh ] && source ~/.fzf/shell/completion.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
 autoload -Uz compinit
 compinit
