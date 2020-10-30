@@ -3,6 +3,9 @@
 # plugin to add predictive suggestions
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Fzf completions
+source ~/.config/zsh/fzf-completion/completion.zsh
+
 autoload -Uz compinit
 compinit
 
