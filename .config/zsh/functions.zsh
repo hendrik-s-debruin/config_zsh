@@ -127,6 +127,13 @@ function _c() {
 
 compdef _c c
 
+_fzf_complete_c() {
+	_fzf_complete  --prompt="Bookmark> " "c " "$@" < <(
+		cat $HOME/.config/ranger/bookmarks | awk -F ':' '{print $1}'
+		cat $HOME/.config/zsh/bookmarks | awk -F ':' '{print $1}'
+	)
+}
+
 # ==============================================================================
 # Create Bookmark
 # ==============================================================================
