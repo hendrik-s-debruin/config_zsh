@@ -232,3 +232,16 @@ function findsym() {
 function cstrip() {
 	gcc -fpreprocessed -dD -E -P $1 | clang-format -style=file -fallback-style=LLVM
 }
+
+# ==============================================================================
+# Execute command on file change
+# ==============================================================================
+function onchange() {
+	if [[ $# -eq 0 ]]; then
+		echo "Usage: onchange <filename> <command> [args ... ]"
+		return -1
+	fi
+	while ! inotifywait -e modify $1; do
+		${@: 2}
+	done
+}
