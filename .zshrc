@@ -1,6 +1,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+setopt HIST_IGNORE_ALL_DUPS
 setopt appendhistory autocd nomatch
 unsetopt beep
 bindkey -v
