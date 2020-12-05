@@ -245,3 +245,19 @@ function onchange() {
 		${@: 2}
 	done
 }
+
+# ==============================================================================
+# Passwords
+# ==============================================================================
+
+function passstore_encrypt() {
+	if [[ ! $# -eq 1 ]]; then
+		echo "Usage: passstore_encrypt <hash>"
+		return -1
+	fi
+	HASH=$1
+
+	tar -cz ~/.password-store | \
+		gpg --sign --encrypt -r $HASH \
+		> pwd.tar.gz.gpg
+}
