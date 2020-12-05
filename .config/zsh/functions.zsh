@@ -261,3 +261,10 @@ function passstore_encrypt() {
 		gpg --sign --encrypt -r $HASH \
 		> pwd.tar.gz.gpg
 }
+
+function secure() {
+	echo "kill gpg agent"
+	gpgconf --kil gpg-agent
+	echo "kill the ssh agent"
+	ssh-agent -k
+}
