@@ -249,7 +249,6 @@ function onchange() {
 # ==============================================================================
 # Passwords
 # ==============================================================================
-
 function passstore_encrypt() {
 	if [[ ! $# -eq 1 ]]; then
 		echo "Usage: passstore_encrypt <hash>"
@@ -267,4 +266,21 @@ function secure() {
 	gpgconf --kil gpg-agent
 	echo "kill the ssh agent"
 	ssh-agent -k
+}
+
+# -=============================================================================
+# Disk Usage
+# ==============================================================================
+# Find high disk usage
+function duh() {
+	if [ $# -eq 0 ]; then
+		let items=5
+	else
+		let items=$1
+	fi
+
+	du -a . 2> /dev/null | \
+		sort -n -r |       \
+		head -n $items |   \
+		awk '{print $2}'
 }
