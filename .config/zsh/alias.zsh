@@ -23,6 +23,7 @@ alias rc="vim ~/.zshrc"
 alias zshrc="vim ~/.zshrc"
 alias gitrc="vim ~/.gitconfig"
 alias gdbrc="vim ~/.gdbinit"
+alias muttrc="vim ~/.config/mutt/neomuttrc"
 
 # ==============================================================================
 # Prettify standard commands
@@ -47,6 +48,7 @@ alias glog="git log | vim -"
 alias g="git"
 alias r="ranger"
 alias v="vim"
+alias mutt="neomutt"
 
 # ==============================================================================
 # Convenience
