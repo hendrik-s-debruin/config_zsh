@@ -29,7 +29,7 @@ alias muttrc="vim ~/.config/mutt/neomuttrc"
 # Prettify standard commands
 # ==============================================================================
 alias grep='grep --colour'
-alias ls="ls --color"
+alias ls="exa"
 alias ccat='cat | highlight -O ansi'
 alias tree="tree -C"
 alias treeless="/usr/bin/tree | less"
@@ -75,6 +75,7 @@ alias hidemouse="unclutter -grab -idle 1 &"
 alias unhidemouse="killall unclutter"
 alias make!="make -j$(nproc)"
 alias startx="ssh-agent startx"
+alias suspend="systemctl suspend"
 
 # ==============================================================================
 # ssh
