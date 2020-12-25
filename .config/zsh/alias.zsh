@@ -66,6 +66,8 @@ alias CAPS='xdotool key Caps_Lock'
 alias caps='CAPS'
 alias k='figlet k'
 alias grsr='git log --oneline --graph --decorate --branches --remotes'
+alias lines="wc -l"
+alias update="yay -Syu --sudoloop"
 
 # ==============================================================================
 # System
