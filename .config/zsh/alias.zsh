@@ -68,6 +68,8 @@ alias k='figlet k'
 alias grsr='git log --oneline --graph --decorate --branches --remotes'
 alias lines="wc -l"
 alias update="yay -Syu --sudoloop"
+alias news="yay --show --news"
+alias news!="yay --show --news --news"
 
 # ==============================================================================
 # System
