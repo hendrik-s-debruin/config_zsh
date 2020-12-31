@@ -19,6 +19,7 @@ alias clc="clear"
 # ==============================================================================
 alias vimrc="vim ~/.vimrc"
 alias i3rc='vim ~/.config/i3/config'
+alias i3conf='i3rc'
 alias rc="vim ~/.zshrc"
 alias zshrc="vim ~/.zshrc"
 alias gitrc="vim ~/.gitconfig"
