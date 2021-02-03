@@ -284,3 +284,23 @@ function duh() {
 		head -n $items |   \
 		awk '{print $2}'
 }
+
+# ==============================================================================
+# Update System
+# ==============================================================================
+function update() {
+	# Check to see if there is any news
+	news=$(yay --show --news)
+
+	# If there is news, return early unless specified '-f'
+	if [[ $news ]]; then
+		echo $news
+		if [[ $# -eq 0 || $1 -ne "-f" ]]; then
+			return
+		fi
+	fi
+
+	# Run the update command
+	yay -Syu --sudoloop
+
+}
