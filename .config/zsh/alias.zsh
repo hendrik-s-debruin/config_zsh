@@ -70,6 +70,7 @@ alias grsr='git log --oneline --graph --decorate --branches --remotes'
 alias lines="wc -l"
 alias news="yay --show --news"
 alias news!="yay --show --news --news"
+alias cbase="git clone https://github.com/hendrik-s-debruin/cmake_base.git"
 
 # ==============================================================================
 # System
