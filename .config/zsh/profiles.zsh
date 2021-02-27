@@ -50,6 +50,14 @@ function setenv() {
 	source $profile_file
 }
 
+function _setenv() {
+	local -a profiles
+	profiles=("${(@f)$(ls $ZSH_LOCAL_PROFILES_DIR | sed 's/.zsh//')}")
+	_describe 'command' profiles
+}
+
+compdef _setenv setenv
+
 function unsetenv() {
 	# Sanitise input
 	if [ $# -ne  1 ]; then
@@ -68,5 +76,14 @@ function unsetenv() {
 	# Unload the profile for future terminals
 	sed --in-place "/$profile/d" $ZSH_PROFILES_FILE
 }
+
+function _unsetenv() {
+	local -a profiles
+	profiles=("${(@f)$(cat $ZSH_PROFILES_FILE)}")
+	_describe 'command' profiles
+}
+
+compdef _unsetenv unsetenv
+
 
 unset PROFILES_DIR
