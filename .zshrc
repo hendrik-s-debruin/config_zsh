@@ -16,6 +16,7 @@ source ~/.config/zsh/prog_env.zsh
 source ~/.config/zsh/prompt.zsh
 source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/dev.zsh
+source ~/.config/zsh/profiles.zsh
 
 # ==============================================================================
 # Startup Commands
