@@ -63,8 +63,14 @@ compdef _setenv setenv
 # ===================== Removing profiles from the session =====================
 function unsetenv() {
 	# Sanitise input
+	if [ $# -eq  0 ]; then
+		echo "Clearing all profiles"
+		cat /dev/null > $ZSH_PROFILES_FILE
+		return
+	fi
+
 	if [ $# -ne  1 ]; then
-		echo "Usage: unsetenv <profile name>"
+		echo "Usage: unsetenv [profile name]"
 	fi
 
 	profile=$1
