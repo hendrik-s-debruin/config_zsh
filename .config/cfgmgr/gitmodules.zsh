@@ -4,3 +4,6 @@
 [submodule ".config/zsh/zsh-autosuggestions"]
 	path = .config/zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".config/zsh/zsh_profiles"]
+	path = .config/zsh/zsh_profiles
+	url = https://github.com/hendrik-s-debruin/zsh_profiles.git
