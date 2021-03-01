@@ -74,6 +74,7 @@ alias cbase="git clone https://github.com/hendrik-s-debruin/cmake_base.git"
 alias s="profile activate"
 alias u="profile deactivate"
 alias pe="profile edit"
+alias p="profile"
 
 # ==============================================================================
 # System
