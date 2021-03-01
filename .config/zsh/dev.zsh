@@ -5,6 +5,3 @@ export PATH=$PATH:~/.cargo/bin
 
 export CMAKE_EXPORT_COMPILE_COMMANDS=ON
 CONAN_ERROR_ON_OVERRIDE=True
-source ~/programming/sdk/emscripten/emsdk/emsdk_env.sh 2> /dev/null
-
-source /opt/ros/noetic/setup.zsh
