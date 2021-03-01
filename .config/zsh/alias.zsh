@@ -71,10 +71,9 @@ alias lines="wc -l"
 alias news="yay --show --news"
 alias news!="yay --show --news --news"
 alias cbase="git clone https://github.com/hendrik-s-debruin/cmake_base.git"
-alias s="setenv"
-alias u="unsetenv"
-alias ge="getenv"
-alias pe="profileedit"
+alias s="profile activate"
+alias u="profile deactivate"
+alias pe="profile edit"
 
 # ==============================================================================
 # System
