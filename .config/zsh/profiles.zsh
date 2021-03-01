@@ -99,5 +99,24 @@ function getenv() {
 	cat $ZSH_PROFILES_FILE
 }
 
+# ================================ Edit profiles ===============================
+function profileedit() {
+	if [ $# -ne  1 ]; then
+		echo "Usage: profileedit <profile name>"
+		return 1
+	fi
+
+	profile=$1
+
+	$EDITOR $ZSH_LOCAL_PROFILES_DIR/$profile.zsh
+}
+
+function _profileedit() {
+	local -a profiles
+	profiles=("${(@f)$(ls $ZSH_LOCAL_PROFILES_DIR | sed 's/.zsh//')}")
+	_describe 'profile' profiles
+}
+
+compdef _profileedit profileedit
 # =================================== Cleanup ==================================
 unset PROFILES_DIR

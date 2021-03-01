@@ -74,6 +74,7 @@ alias cbase="git clone https://github.com/hendrik-s-debruin/cmake_base.git"
 alias s="setenv"
 alias u="unsetenv"
 alias ge="getenv"
+alias pe="profileedit"
 
 # ==============================================================================
 # System
