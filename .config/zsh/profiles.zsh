@@ -1,3 +1,4 @@
+# ========================== Setup the profile system ==========================
 # File where loaded profiles are listed
 PROFILES_DIR=/tmp/$(whoami)_profiles
 ZSH_PROFILES_FILE=$PROFILES_DIR/profiles
@@ -19,6 +20,7 @@ do
 	source $ZSH_LOCAL_PROFILES_DIR/$profile.zsh
 done
 
+# ======================= Adding profiles to the session =======================
 # Function to load a profile for this and all subsequent shells
 # Usage: setenv <profile name>
 function setenv() {
@@ -53,11 +55,12 @@ function setenv() {
 function _setenv() {
 	local -a profiles
 	profiles=("${(@f)$(ls $ZSH_LOCAL_PROFILES_DIR | sed 's/.zsh//')}")
-	_describe 'command' profiles
+	_describe 'profile' profiles
 }
 
 compdef _setenv setenv
 
+# ===================== Removing profiles from the session =====================
 function unsetenv() {
 	# Sanitise input
 	if [ $# -ne  1 ]; then
@@ -80,10 +83,15 @@ function unsetenv() {
 function _unsetenv() {
 	local -a profiles
 	profiles=("${(@f)$(cat $ZSH_PROFILES_FILE)}")
-	_describe 'command' profiles
+	_describe 'profile' profiles
 }
 
 compdef _unsetenv unsetenv
 
+# =========================== Display active profiles ==========================
+function getenv() {
+	cat $ZSH_PROFILES_FILE
+}
 
+# =================================== Cleanup ==================================
 unset PROFILES_DIR
