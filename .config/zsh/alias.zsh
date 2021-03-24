@@ -50,6 +50,7 @@ alias g="git"
 alias r="ranger"
 alias v="vim"
 alias mutt="neomutt"
+alias t="task"
 
 # ==============================================================================
 # Convenience
@@ -75,6 +76,8 @@ alias s="profile activate"
 alias u="profile deactivate"
 alias pe="profile edit"
 alias p="profile"
+alias ta="tmux attach -t"
+alias tta="tmux attach -rt"
 
 # ==============================================================================
 # System
