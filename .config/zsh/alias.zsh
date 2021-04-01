@@ -51,6 +51,7 @@ alias r="ranger"
 alias v="vim"
 alias mutt="neomutt"
 alias t="task"
+alias d="vimdiff"
 
 # ==============================================================================
 # Convenience
