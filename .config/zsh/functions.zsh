@@ -302,5 +302,4 @@ function update() {
 
 	# Run the update command
 	yay -Syu --sudoloop
-
 }

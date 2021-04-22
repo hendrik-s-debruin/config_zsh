@@ -25,6 +25,7 @@ alias zshrc="vim ~/.zshrc"
 alias gitrc="vim ~/.gitconfig"
 alias gdbrc="vim ~/.gdbinit"
 alias muttrc="vim ~/.config/mutt/neomuttrc"
+alias quterc="vim ~/.config/qutebrowser/config.py"
 
 # ==============================================================================
 # Prettify standard commands
@@ -52,6 +53,7 @@ alias v="vim"
 alias mutt="neomutt"
 alias t="task"
 alias d="vimdiff"
+alias h="htop"
 
 # ==============================================================================
 # Convenience
