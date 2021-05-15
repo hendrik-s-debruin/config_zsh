@@ -2,7 +2,12 @@
 # Source Ros
 # ==============================================================================
 source /opt/ros/noetic/setup.zsh
-source ~/programming/projects/mrs/devel/setup.zsh
+source ~/mrs_workspace/devel/setup.zsh
+
+#  =============================================================================
+#  Convencience Aliases
+#  =============================================================================
+alias generate_compile_commands="jq -s 'map(.[])' build/**/compile_commands.json > compile_commands.json"
 
 # ==============================================================================
 # Extracts from MRS Shell Additions
