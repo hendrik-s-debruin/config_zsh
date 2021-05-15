@@ -1,6 +1,9 @@
 # This file sets any preferred environment variables for specific programs
 RANGER_LOAD_DEFAULT_RC=false
 
+# Tell FZF to ignore files in .gitignore
+export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore_global -g ""'
+
 # gpg-agent
 GPG_TTY=$(tty)
 export GPG_TTY
