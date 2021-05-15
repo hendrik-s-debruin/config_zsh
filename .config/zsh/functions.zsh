@@ -17,7 +17,7 @@ function shutdown() {
 			sleep 0.5
 	fi
 
-	/usr/bin/shutdown now
+	/usr/sbin/shutdown now
 }
 
 function reboot() {
@@ -172,32 +172,6 @@ function man {
 	else
 		/usr/bin/man $@
 	fi
-}
-
-# ==============================================================================
-# Launch a new shell
-# ==============================================================================
-function newsh() {
-	# usage: newsh [number of shells] [startup commands]
-
-	let MAX=1
-	re='^[0-9]+$'
-	if [[ $1 =~ $re ]]; then
-		MAX=$1
-		if [ $# -eq 2 ]; then
-			startup_command=$2
-		fi
-	else
-		startup_command=$1
-	fi
-
-	# Launch the terminals
-	let INDEX=0
-	while [ $INDEX -lt $MAX ]; do
-		RUN=$startup_command i3-sensible-terminal >/dev/null 2>&1 &
-		disown
-		let INDEX=$INDEX+1
-	done
 }
 
 # ==============================================================================
