@@ -235,13 +235,6 @@ function passstore_encrypt() {
 		> pwd.tar.gz.gpg
 }
 
-function secure() {
-	echo "kill gpg agent"
-	gpgconf --kil gpg-agent
-	echo "kill the ssh agent"
-	ssh-agent -k
-}
-
 # -=============================================================================
 # Disk Usage
 # ==============================================================================
