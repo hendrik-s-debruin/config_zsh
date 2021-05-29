@@ -26,6 +26,7 @@ alias gitrc="vim ~/.gitconfig"
 alias gdbrc="vim ~/.gdbinit"
 alias muttrc="vim ~/.config/mutt/neomuttrc"
 alias quterc="vim ~/.config/qutebrowser/config.py"
+alias alacrittyrc="vim ~/.config/alacritty/alacritty.yml"
 
 # ==============================================================================
 # Prettify standard commands
@@ -51,9 +52,11 @@ alias g="git"
 alias r="ranger"
 alias v="vim"
 alias mutt="neomutt"
-alias t="task"
+alias t="taskwarrior-tui"
 alias d="vimdiff"
 alias h="htop"
+alias wl="~/.config/wacom/setup left"
+alias wr="~/.config/wacom/setup right"
 
 # ==============================================================================
 # Convenience
@@ -81,6 +84,8 @@ alias pe="profile edit"
 alias p="profile"
 alias ta="tmux attach -t"
 alias tta="tmux attach -rt"
+alias cryptopen="sudo cryptsetup luksOpen /dev/sda1 secret && sudo mount /dev/mapper/secret /mnt/secret"
+alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 
 # ==============================================================================
 # System
