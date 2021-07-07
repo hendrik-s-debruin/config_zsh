@@ -11,5 +11,8 @@ export GPG_TTY
 # Remote storage
 export RCLONE_PASSWORD_COMMAND="pass rclone/config"
 
+# Default configuration when building with CMake
+export CMAKE_BUILD_TYPE=Debug
+
 # how long pass should keep a password on the clipboard, seconds
 export PASSWORD_STORE_CLIP_TIME=10

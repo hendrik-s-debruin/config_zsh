@@ -3,11 +3,65 @@
 # ==============================================================================
 source /opt/ros/noetic/setup.zsh
 source ~/mrs_workspace/devel/setup.zsh
+# source ~/Documents/waterbird_mrs_tracker/devel/setup.zsh
+source ~/Documents/waterbird++_mrs_tracker/devel_release/setup.zsh
+# source ~/Documents/waterbird_mrs/devel/setup.zsh
+# source ~/Documents/waterbird++_mrs/devel/setup.zsh
 
 #  =============================================================================
 #  Convencience Aliases
 #  =============================================================================
 alias generate_compile_commands="jq -s 'map(.[])' build/**/compile_commands.json > compile_commands.json"
+alias b="catkin build"
+alias bt="catkin build --this"
+
+function waterbird() {
+	dir=$(pwd)
+	cd ~/Documents/waterbird_mrs/src/
+	./start.sh
+	cd $dir
+}
+
+alias w=waterbird
+
+function waterbird_tracker() {
+	dir=$(pwd)
+	cd ~/Documents/waterbird_mrs_tracker/src/
+	./start.sh
+	cd $dir
+}
+
+alias wt=waterbird_tracker
+
+function build_waterbird() {
+	dir=$(pwd)
+	cd ~/Documents/waterbird_mrs/src/
+	catkin build --this
+	cd $dir
+}
+
+alias bw=build_waterbird
+
+function build_waterbird_tracker() {
+	dir=$(pwd)
+	cd ~/Documents/waterbird_mrs_tracker/src/
+	catkin build --this
+	cd $dir
+}
+
+alias bwt=build_waterbird_tracker
+
+function change_to_waterbird() {
+	rosservice call /uav1/control_manager/switch_controller waterbird_mrs
+}
+
+alias cw=change_to_waterbird
+
+function change_to_waterbird_tracker() {
+	rosservice call /uav1/control_manager/switch_tracker waterbird_mrs_tracker
+}
+
+alias cwt=change_to_waterbird_tracker
 
 # ==============================================================================
 # Extracts from MRS Shell Additions
