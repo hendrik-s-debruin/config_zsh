@@ -16,3 +16,5 @@ export CMAKE_BUILD_TYPE=Debug
 
 # how long pass should keep a password on the clipboard, seconds
 export PASSWORD_STORE_CLIP_TIME=10
+
+export MANPAGER=vimpager

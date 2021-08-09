@@ -1,4 +1,20 @@
 # ==============================================================================
+# Programming
+# ==============================================================================
+function mod() {
+	if [ $# != 1 ]; then
+		echo "Error, usage: $0 <module name>"
+		return -1
+	fi
+	module_name=$1
+
+	mkdir $module_name
+	mkdir $module_name/include
+	mkdir $module_name/src
+	touch $module_name/CMakeLists.txt
+}
+
+# ==============================================================================
 # Startup and Shutdown
 # ==============================================================================
 function shutdown() {
@@ -235,7 +251,7 @@ function passstore_encrypt() {
 		> pwd.tar.gz.gpg
 }
 
-# -=============================================================================
+# ==============================================================================
 # Disk Usage
 # ==============================================================================
 # Find high disk usage
@@ -269,4 +285,16 @@ function update() {
 
 	# Run the update command
 	yay -Syu --sudoloop
+}
+
+# ==============================================================================
+# Stopwatch
+# ==============================================================================
+function stopwatch()
+{
+	date1=`date +%s`;
+	while true; do
+		# echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+		echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\n";
+	done
 }
