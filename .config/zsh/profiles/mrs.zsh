@@ -1,12 +1,13 @@
 # ==============================================================================
 # Source Ros
 # ==============================================================================
-source /opt/ros/noetic/setup.zsh
-source ~/mrs_workspace/devel/setup.zsh
-# source ~/Documents/waterbird_mrs_tracker/devel/setup.zsh
-source ~/Documents/waterbird++_mrs_tracker/devel_release/setup.zsh
-# source ~/Documents/waterbird_mrs/devel/setup.zsh
-# source ~/Documents/waterbird++_mrs/devel/setup.zsh
+# source /opt/ros/noetic/setup.zsh
+# source ~/mrs_workspace/devel/setup.zsh
+# source ~/Documents/.waterbirdpp_mrs_tracker.old/devel/setup.zsh
+# source ~/Documents/TRACKER/devel/setup.zsh
+# source ~/Documents/nmpc_solver/devel/setup.zsh
+# source ~/Documents/TRACKER/devel/setup.zsh
+source ~/Documents/waterbird_full_mrs_att2/devel/setup.zsh
 
 #  =============================================================================
 #  Convencience Aliases
@@ -14,6 +15,56 @@ source ~/Documents/waterbird++_mrs_tracker/devel_release/setup.zsh
 alias generate_compile_commands="jq -s 'map(.[])' build/**/compile_commands.json > compile_commands.json"
 alias b="catkin build"
 alias bt="catkin build --this"
+
+catkin() {
+
+  case $* in
+
+    init*)
+
+      # give me the path to root of the repo we are in
+      ROOT_DIR=`git rev-parse --show-toplevel` 2> /dev/null
+
+      command catkin "$@"
+      command catkin config --profile debug --cmake-args -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS='-std=c++17 -march=native' -DCMAKE_C_FLAGS='-march=native'
+      command catkin config --profile release --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS='-std=c++17 -march=native' -DCMAKE_C_FLAGS='-march=native'
+      command catkin config --profile reldeb --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS='-std=c++17 -march=native' -DCMAKE_C_FLAGS='-march=native'
+
+      command catkin profile set reldeb
+      ;;
+
+    build*|b|bt)
+
+      hostname=$( cat /etc/hostname )
+
+      # we do not need this anymore,
+      # UAVs should have SWAP set up so they can build
+      # if [[ $hostname == uav* ]]; then
+      #   memlimit="--mem-limit 50%"
+      # else
+      #   memlimit=""
+      # fi
+
+      PACKAGES=$(catkin list)
+      if [ -z "$PACKAGES" ]; then
+        echo "Cannot compile, probably not in a workspace (call catkin list, if the result is empty, build you workspace in its root first)."
+      else
+        if [ -z "$memlimit" ]; then
+          command catkin "$@"
+        else
+          echo "Detected UAV PC, compiling with $memlimit"
+          command catkin "$@" $memlimit
+        fi
+      fi
+
+      ;;
+
+    *)
+      command catkin $@
+      ;;
+
+    esac
+  }
 
 function waterbird() {
 	dir=$(pwd)
