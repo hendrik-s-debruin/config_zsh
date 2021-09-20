@@ -4,7 +4,8 @@
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Fzf completions
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+[ -f /usr/share/fzf/completion.zsh              ] && source /usr/share/fzf/completion.zsh              # arch install path
+[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh # ubuntu install path
 
 # Search history
 search_history() {
