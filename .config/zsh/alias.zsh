@@ -87,6 +87,7 @@ alias tta="tmux attach -rt"
 alias cryptopen="sudo cryptsetup luksOpen /dev/sda1 secret && sudo mount /dev/mapper/secret /mnt/secret"
 alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 alias python="python3"
+alias ranger="source ranger"
 
 # ==============================================================================
 # System
