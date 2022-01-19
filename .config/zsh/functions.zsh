@@ -254,7 +254,6 @@ function update() {
 	# Run the update command
 	yay -Syu --sudoloop
 }
-# }}}
 #  ================================= Stopwatch ============================= {{{
 function stopwatch()
 {
@@ -265,3 +264,15 @@ function stopwatch()
 	done
 }
 # }}}
+
+function cd() {
+	builtin cd $1
+	exa
+}
+
+# ==============================================================================
+# Rust
+# ==============================================================================
+function explain() {
+	rustc --explain E$1
+}

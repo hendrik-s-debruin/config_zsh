@@ -48,6 +48,8 @@ alias wl="~/.config/wacom/setup left"
 alias wr="~/.config/wacom/setup right"
 # }}}
 #  ================================ Convenience ============================ {{{
+alias rdoc="rustup doc --book </dev/null &>/dev/null &; disown"
+alias rstd="rustup doc --std </dev/null &>/dev/null &; disown"
 alias gping="ping www.google.com"
 alias pull="git pull"
 alias count="wc -l"

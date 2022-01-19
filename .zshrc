@@ -6,6 +6,8 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt appendhistory autocd nomatch
 unsetopt beep
 bindkey -v
+export EDITOR=vim
+
 # }}}
 # =============================== External Files =========================== {{{
 source ~/.config/zsh/completion.zsh
