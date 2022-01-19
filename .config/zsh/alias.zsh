@@ -1,22 +1,15 @@
-# This file contains all the aliases for the zsh shell
-
-# ==============================================================================
-# Reload Config
-# ==============================================================================
-alias rebash='source ~/.zshrc'
-
-# ==============================================================================
-# Mimic commands from other command line applications
-# ==============================================================================
+#  =============================== Reload Config =========================== {{{
+alias rebash='clear && source ~/.zshrc'
+alias rb="rebash"
+# }}}
+#  ============ Mimic commands from other command line applications ======== {{{
 alias quit="exit"
 alias :q="exit"
 alias :q!="exit"
 alias q="exit"
 alias clc="clear"
-
-# ==============================================================================
-# Edit specific files
-# ==============================================================================
+# }}}
+#  ============================ Edit specific files ======================== {{{
 alias vimrc="vim ~/.vimrc"
 alias i3rc='vim ~/.config/i3/config'
 alias i3conf='i3rc'
@@ -27,19 +20,15 @@ alias gdbrc="vim ~/.gdbinit"
 alias muttrc="vim ~/.config/mutt/neomuttrc"
 alias quterc="vim ~/.config/qutebrowser/config.py"
 alias alacrittyrc="vim ~/.config/alacritty/alacritty.yml"
-
-# ==============================================================================
-# Prettify standard commands
-# ==============================================================================
+# }}}
+#  ======================== Prettify standard commands ===================== {{{
 alias grep='grep --colour'
 alias ls="exa"
 alias ccat='cat | highlight -O ansi'
 alias tree="tree -C"
 alias treeless="/usr/bin/tree | less"
-
-# ==============================================================================
-# Tools
-# ==============================================================================
+# }}}
+#  =================================== Tools =============================== {{{
 alias calculator='octave-cli'
 alias calc='octave-cli'
 alias texlive="tllocalmgr"
@@ -57,10 +46,8 @@ alias d="vimdiff"
 alias h="htop"
 alias wl="~/.config/wacom/setup left"
 alias wr="~/.config/wacom/setup right"
-
-# ==============================================================================
-# Convenience
-# ==============================================================================
+# }}}
+#  ================================ Convenience ============================ {{{
 alias gping="ping www.google.com"
 alias pull="git pull"
 alias count="wc -l"
@@ -86,19 +73,18 @@ alias ta="tmux attach -t"
 alias tta="tmux attach -rt"
 alias cryptopen="sudo cryptsetup luksOpen /dev/sda1 secret && sudo mount /dev/mapper/secret /mnt/secret"
 alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
-alias python="python3"
-
-# ==============================================================================
-# System
-# ==============================================================================
+alias python="bpython"
+alias pi="bpython --interactive"
+alias pt="pytest -rxv ."
+# }}}
+#  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"
 alias hidemouse="unclutter -grab -idle 1 &"
 alias unhidemouse="killall unclutter"
 alias make!="make -j$(nproc)"
-alias startx="ssh-agent startx"
+# alias startx="ssh-agent startx"
 alias suspend="systemctl suspend"
-
-# ==============================================================================
-# ssh
-# ==============================================================================
+# }}}
+#  ==================================== SSH ================================ {{{
 alias ssh-keygen-comment="ssh-keygen -C $(whoami)@$(hostname)-$(date -I)"
+# }}}

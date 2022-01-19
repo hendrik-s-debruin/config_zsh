@@ -5,3 +5,5 @@ export PATH=$PATH:~/.cargo/bin
 
 export CMAKE_EXPORT_COMPILE_COMMANDS=ON
 CONAN_ERROR_ON_OVERRIDE=True
+
+export PATH=$PATH:~/.local/bin

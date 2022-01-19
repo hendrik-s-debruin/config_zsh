@@ -18,3 +18,5 @@ export CMAKE_BUILD_TYPE=Debug
 export PASSWORD_STORE_CLIP_TIME=10
 
 export MANPAGER=vimpager
+
+source virtualenvwrapper.sh
