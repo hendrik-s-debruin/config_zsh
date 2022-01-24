@@ -79,6 +79,7 @@ alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 alias python="bpython"
 alias pi="bpython --interactive"
 alias pt="pytest -rxv ."
+alias venv="mkvirtualenv -p /usr/bin/python3.7"
 # }}}
 #  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"

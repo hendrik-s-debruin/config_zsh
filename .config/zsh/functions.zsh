@@ -11,6 +11,12 @@ function mod() {
 	mkdir $module_name/src
 	touch $module_name/CMakeLists.txt
 }
+
+
+# pip install the current repo at the current commit
+function pipthis() {
+	pip install git+file:$(pwd)@$(git rev-parse HEAD)
+}
 # }}}
 # ============================ Startup and Shutdown ======================== {{{
 function shutdown() {
