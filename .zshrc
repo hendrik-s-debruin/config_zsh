@@ -22,6 +22,7 @@ source ~/.config/zsh/zsh_profiles/profiles.zsh
 # }}}
 #  ================================= Bookmarks ============================= {{{
 # ~/.config/zsh/profiles
+# ~/.zprofile
 # }}}
 # ============================== Startup Commands ========================== {{{
 if [ $COLUMNS -ge 90 ] && [  $(tput lines) -ge 19 ]; then
