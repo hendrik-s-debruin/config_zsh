@@ -24,9 +24,10 @@ alias qtilerc="vim ~/.config/qtile/config.py"
 # }}}
 #  ======================== Prettify standard commands ===================== {{{
 alias grep='grep --colour'
-alias ls="exa"
+alias ls="exa --icons --git"
+alias lsi="exa --icons --git-ignore"
 alias ccat='cat | highlight -O ansi'
-alias tree="tree -C"
+alias tree="exa --tree --icons --git-ignore"
 alias treeless="/usr/bin/tree | less"
 # }}}
 #  =================================== Tools =============================== {{{
