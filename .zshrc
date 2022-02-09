@@ -11,11 +11,11 @@ export EDITOR=vim
 # }}}
 # =============================== External Files =========================== {{{
 source ~/.config/zsh/completion.zsh
+source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/highlight.zsh
 source ~/.config/zsh/prog_env.zsh
 source ~/.config/zsh/prompt.zsh
-source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/dev.zsh
 source ~/.config/zsh/bindings.zsh
 source ~/.config/zsh/zsh_profiles/profiles.zsh
