@@ -79,7 +79,7 @@ alias cryptopen="sudo cryptsetup luksOpen /dev/sda1 secret && sudo mount /dev/ma
 alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 alias python="bpython"
 alias pi="bpython --interactive"
-alias pt="pytest --verbose ."
+alias pt="pytest --verbose"
 alias venv="mkvirtualenv -p /usr/bin/python3.7"
 # }}}
 #  ================================== System =============================== {{{

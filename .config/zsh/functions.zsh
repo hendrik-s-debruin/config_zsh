@@ -59,8 +59,17 @@ function please() {
 # }}}
 #  =============================== File Manager ============================ {{{
 function ranger() {
-	/usr/bin/ranger --choosedir=/tmp/RANGERDIR
-	cd $(cat /tmp/RANGERDIR)
+	curdir=$(pwd)
+	choosedir_file=/tmp/RANGERDIR
+	/usr/bin/ranger --choosedir=$choosedir_file
+	choosedir=$(cat $choosedir_file)
+
+	# Only change if we've chosen a new directory. This will avoid overwriting
+	# the history in `cd -` with the same directory
+	if [[ $choosedir != $curdir ]]; then
+		cd $(cat /tmp/RANGERDIR)
+	fi
+	rm $choosedir_file
 }
 # }}}
 #  =============================== Project Tree ============================ {{{
@@ -273,7 +282,7 @@ function stopwatch()
 
 function cd() {
 	builtin cd $1
-	ls
+	COLUMNS=80 ls -x
 }
 
 # ==============================================================================
