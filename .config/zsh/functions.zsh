@@ -17,6 +17,28 @@ function mod() {
 function pipthis() {
 	pip install git+file:$(pwd)@$(git rev-parse HEAD)
 }
+
+# Create virtual environment and associate it with a git repo
+function venv() {
+	# Check if we are in a git repo
+	git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+	if [[ $? -ne 0 ]]; then
+		echo Error: not currently in a git repo
+		return 1
+	fi
+
+	# Check if a virtual environment is already set
+	if [[ -f $git_dir/python_virtual_env ]]; then
+		echo Error: virtual environment "'" $(cat $git_dir/python_virtual_env) "'" already set
+		return 1
+	fi
+
+	# Associate a virtual environment with this repo
+	echo $1 > $git_dir/python_virtual_env
+
+	# Create the virtual environment
+	mkvirtualenv $@
+}
 # }}}
 # ============================ Startup and Shutdown ======================== {{{
 function shutdown() {
