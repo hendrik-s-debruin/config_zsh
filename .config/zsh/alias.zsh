@@ -29,7 +29,7 @@ alias ls="exa --icons --git"
 alias lsi="exa --icons --git-ignore"
 alias ccat='cat | highlight -O ansi'
 alias tree="exa --tree --icons --git-ignore"
-alias treeless="/usr/bin/tree | less"
+alias treeless="tree | less"
 # }}}
 #  =================================== Tools =============================== {{{
 alias calculator='octave-cli'
