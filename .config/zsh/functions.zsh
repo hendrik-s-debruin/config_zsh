@@ -282,6 +282,33 @@ function stopwatch()
 
 function cd() {
 	builtin cd $1
+
+	# Check if we are in a git repo
+	git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+	if [[ $? -eq 0 ]]; then
+		in_git_repo=true
+	else
+		in_git_repo=false
+	fi
+
+	# Check if we are in a python virtual environment
+	if [[ "$VIRTUAL_ENV" != "" ]]; then
+		python_virtual_env_active=false
+	else
+		python_virtual_env_active=true
+	fi
+
+	if [[ "$python_virtual_env_active" && "$in_git_repo" == false ]]; then
+		# Deactivate the virtual environment if one is active and we are no
+		# longer in a git repo
+		deactivate
+	elif [[ "$in_git_repo" == true  && -f $git_dir/python_virtual_env ]]; then
+		# If we are in a git repo with an associated python virtual environment,
+		# activate that environment
+		workon $(cat $git_dir/python_virtual_env)
+	fi
+
+	# Show files in this directory
 	COLUMNS=80 ls -x
 }
 
