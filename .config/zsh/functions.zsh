@@ -1,4 +1,6 @@
 # ================================= Programming ============================ {{{
+python_venv_filename=.venv
+
 function mod() {
 	if [ $# != 1 ]; then
 		echo "Error, usage: $0 <module name>"
@@ -28,13 +30,13 @@ function venv() {
 	fi
 
 	# Check if a virtual environment is already set
-	if [[ -f $git_dir/python_virtual_env ]]; then
-		echo Error: virtual environment "'" $(cat $git_dir/python_virtual_env) "'" already set
+	if [[ -f $git_dir/$python_venv_filename ]]; then
+		echo Error: virtual environment "'" $(cat $git_dir/$python_venv_filename) "'" already set
 		return 1
 	fi
 
 	# Associate a virtual environment with this repo
-	echo $1 > $git_dir/python_virtual_env
+	echo $1 > $git_dir/$python_venv_filename
 
 	# Create the virtual environment
 	mkvirtualenv $@
@@ -308,10 +310,10 @@ function cd() {
 		# Deactivate the virtual environment if one is active and we are no
 		# longer in a git repo
 		deactivate
-	elif [[ "$in_git_repo" == true  && -f $git_dir/python_virtual_env ]]; then
+	elif [[ "$in_git_repo" == true  && -f $git_dir/$python_venv_filename ]]; then
 		# If we are in a git repo with an associated python virtual environment,
 		# activate that environment
-		workon $(cat $git_dir/python_virtual_env)
+		workon $(cat $git_dir/$python_venv_filename)
 	fi
 
 	# Show files in this directory
