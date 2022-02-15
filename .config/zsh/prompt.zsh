@@ -3,12 +3,12 @@
 autoload -U colors && colors
 setopt PROMPT_SUBST
 PS1='$(prompt_whoami) '
-PS1+='@'
-PS1+=' $(hostname)'
-PS1+=' $(prompt_pwd) '
-PS1+='$(prompt_git)'
-PS1+='$(prompt_job_count)'
+PS1+='@ '
+PS1+='$(hostname) '
+PS1+='$(prompt_pwd)'
+PS1+=' $(prompt_git)'
 PS1+='$(prompt_python_venv)'
+PS1+='$(prompt_job_count)'
 PS1+='$(prompt_emoji)'
 PS1+=' $(prompt_char) '
 
@@ -32,10 +32,10 @@ function prompt_git {
 		if [[ `git status --porcelain` ]]; then
 			# There are changes on the branch
 			# echo `color_string "[$branch_name]" bf616a`
-			echo "%{$fg[yellow]%}  $branch_name "
+			echo "%{$fg[yellow]%} $branch_name "
 		else
 			# echo `color_string "[$branch_name]" a3be8c`
-			echo "%{$fg[green]%}  $branch_name "
+			echo "%{$fg[green]%} $branch_name "
 		fi
 	else
 		#echo not on branch
@@ -46,8 +46,12 @@ function prompt_git {
 # pwd
 # ------------------------------------------------------------------------------
 function prompt_pwd {
-	# echo $(color_string "%2~" ebcb8b)
-	echo "%{$fg[yellow]%} %2~"
+	if [[ "$(pwd)" == "/" || "$(pwd)" == "$HOME" ]]; then
+		echo "%{$fg[yellow]%}%2~"
+	else
+		# echo $(color_string "%2~" ebcb8b)
+		echo "%{$fg[yellow]%} %2~"
+	fi
 }
 
 # ------------------------------------------------------------------------------
