@@ -304,9 +304,12 @@ function auto_activate_virtual_env() {
 		python_virtual_env_active=true
 	fi
 
-	if [[ "$in_git_repo" == true  && -f $git_dir/$python_venv_filename ]]; then
+	if [[ $in_git_repo == true  && -f $git_dir/$python_venv_filename ]]; then
 		workon $(cat $git_dir/$python_venv_filename)
-	else
+		return
+	fi
+
+	if [[ $python_virtual_env_active == true ]]; then
 		deactivate
 	fi
 }
