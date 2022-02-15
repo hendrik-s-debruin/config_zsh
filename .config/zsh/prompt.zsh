@@ -9,6 +9,7 @@ PS1+=' $(prompt_pwd) '
 PS1+='$(prompt_git)'
 PS1+='$(prompt_job_count)'
 PS1+='$(prompt_emoji)'
+PS1+='$(prompt_python_venv)'
 PS1+=' $(prompt_char) '
 
 # ==============================================================================
@@ -31,10 +32,10 @@ function prompt_git {
 		if [[ `git status --porcelain` ]]; then
 			# There are changes on the branch
 			# echo `color_string "[$branch_name]" bf616a`
-			echo "%{$fg[yellow]%} == $branch_name == "
+			echo "%{$fg[yellow]%}  $branch_name "
 		else
 			# echo `color_string "[$branch_name]" a3be8c`
-			echo "%{$fg[green]%} == $branch_name == "
+			echo "%{$fg[green]%}  $branch_name "
 		fi
 	else
 		#echo not on branch
@@ -106,4 +107,14 @@ function prompt_emoji {
 function bold_string {
 	#echo -e "\033[1m$1\033[0m"
 	echo $1
+}
+
+# ------------------------------------------------------------------------------
+# Python Virtual Environment
+# ------------------------------------------------------------------------------
+function prompt_python_venv {
+	if [[ "$VIRTUAL_ENV" != "" ]]; then
+		venv_name=$(basename $VIRTUAL_ENV)
+		echo "%{$fg[white]%} $venv_name"
+	fi
 }

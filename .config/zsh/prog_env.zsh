@@ -19,4 +19,5 @@ export PASSWORD_STORE_CLIP_TIME=10
 
 export MANPAGER=vimpager
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 source virtualenvwrapper.sh
