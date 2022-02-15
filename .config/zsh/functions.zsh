@@ -288,9 +288,7 @@ function stopwatch()
 }
 # }}}
 
-function cd() {
-	builtin cd $1
-
+function activate_virtual_env() {
 	# Check if we are in a git repo
 	git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
 	if [[ $? -eq 0 ]]; then
@@ -315,6 +313,12 @@ function cd() {
 		# activate that environment
 		workon $(cat $git_dir/$python_venv_filename)
 	fi
+}
+
+function cd() {
+	builtin cd $1
+
+	activate_virtual_env
 
 	# Show files in this directory
 	COLUMNS=80 ls -x

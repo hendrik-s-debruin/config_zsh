@@ -29,6 +29,8 @@ if [ $COLUMNS -ge 90 ] && [  $(tput lines) -ge 19 ]; then
 	archey3 -c cyan
 fi
 
+activate_virtual_env
+
 # Call "RUN='command vargs...' zsh" to run a command on zsh start
 eval $RUN
 # }}}
