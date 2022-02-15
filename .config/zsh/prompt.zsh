@@ -8,8 +8,8 @@ PS1+=' $(hostname)'
 PS1+=' $(prompt_pwd) '
 PS1+='$(prompt_git)'
 PS1+='$(prompt_job_count)'
-PS1+='$(prompt_emoji)'
 PS1+='$(prompt_python_venv)'
+PS1+='$(prompt_emoji)'
 PS1+=' $(prompt_char) '
 
 # ==============================================================================
@@ -47,7 +47,7 @@ function prompt_git {
 # ------------------------------------------------------------------------------
 function prompt_pwd {
 	# echo $(color_string "%2~" ebcb8b)
-	echo "%{$fg[yellow]%}%2~"
+	echo "%{$fg[yellow]%} %2~"
 }
 
 # ------------------------------------------------------------------------------
