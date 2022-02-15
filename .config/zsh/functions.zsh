@@ -288,7 +288,7 @@ function stopwatch()
 }
 # }}}
 
-function activate_virtual_env() {
+function auto_activate_virtual_env() {
 	# Check if we are in a git repo
 	git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
 	if [[ $? -eq 0 ]]; then
@@ -298,27 +298,23 @@ function activate_virtual_env() {
 	fi
 
 	# Check if we are in a python virtual environment
-	if [[ "$VIRTUAL_ENV" != "" ]]; then
+	if [[ "$VIRTUAL_ENV" == "" ]]; then
 		python_virtual_env_active=false
 	else
 		python_virtual_env_active=true
 	fi
 
-	if [[ "$python_virtual_env_active" && "$in_git_repo" == false ]]; then
-		# Deactivate the virtual environment if one is active and we are no
-		# longer in a git repo
-		deactivate
-	elif [[ "$in_git_repo" == true  && -f $git_dir/$python_venv_filename ]]; then
-		# If we are in a git repo with an associated python virtual environment,
-		# activate that environment
+	if [[ "$in_git_repo" == true  && -f $git_dir/$python_venv_filename ]]; then
 		workon $(cat $git_dir/$python_venv_filename)
+	else
+		deactivate
 	fi
 }
 
 function cd() {
 	builtin cd $1
 
-	activate_virtual_env
+	auto_activate_virtual_env
 
 	# Show files in this directory
 	COLUMNS=80 ls -x
