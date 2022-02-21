@@ -78,8 +78,8 @@ alias ta="tmux attach -t"
 alias tta="tmux attach -rt"
 alias cryptopen="sudo cryptsetup luksOpen /dev/sda1 secret && sudo mount /dev/mapper/secret /mnt/secret"
 alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
-alias python="bpython"
-alias pi="bpython --interactive"
+# alias python="bpython"
+# alias pi="bpython --interactive"
 alias pt="pytest --verbose"
 # }}}
 #  ================================== System =============================== {{{
