@@ -323,6 +323,36 @@ function cd() {
 	COLUMNS=80 ls -x
 }
 
+function notify_this() {
+	if [[ $# -lt 3 ]]; then
+		echo "Error: usage: cmd [[arg] ...] success_msg error_msg"
+		return 1
+	fi
+
+	num_commands=$#
+	success_msg_idx=$((num_commands - 1))
+	error_msg_idx=$num_commands
+	last_arg_idx=$((success_msg_idx - 1))
+
+	# Call cmd [[arg] ...]
+	${@:1:$last_arg_idx}
+
+	# Notify
+	if [[ $? -eq 0 ]]; then
+		notify-send ${@[$success_msg_idx]}
+	else
+		notify-send --urgency=critical ${@[$error_msg_idx]}
+	fi
+}
+
+function pt() {
+	notify_this pytest --verbose $@ 'pytest tests succeeded' 'pytest tests failed'
+}
+
+function ptt() {
+	notify_this pytest --verbose -n auto $@ 'pytest tests succeeded' 'pytest tests failed'
+}
+
 # ==============================================================================
 # Rust
 # ==============================================================================
