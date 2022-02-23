@@ -2,7 +2,7 @@
 
 # IF not running inside of tmux, launch tmux and rerun this script
 if [[ "$TMUX" == "" ]]; then
-	tmux new "$SHELL -c update; $SHELL"
+	tmux new "$SHELL -c update $@; $SHELL"
 	exit
 fi
 # Check to see if there is any news
@@ -12,7 +12,7 @@ news=$(yay --show --news)
 if [[ $news ]]; then
 	echo $news
 	if [[ $# -eq 0 || $1 -ne "-f" ]]; then
-		return
+		exit
 	fi
 fi
 
