@@ -24,18 +24,7 @@ source ~/.config/zsh/zsh_profiles/profiles.zsh
 # ~/.zprofile
 # }}}
 # ============================== Startup Commands ========================== {{{
-git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
-if [[ $? -eq 0 ]]; then
-	in_git_repo=true
-else
-	in_git_repo=false
-fi
-if [[ $in_git_repo == true ]]; then
-	onefetch --no-palette --show-logo auto
-elif [ $COLUMNS -ge 90 ] && [  $(tput lines) -ge 19 ]; then
-	archey3 -c cyan
-fi
-
+show_startup_header
 auto_activate_virtual_env
 
 # Call "RUN='command vargs...' zsh" to run a command on zsh start
