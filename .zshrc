@@ -7,7 +7,6 @@ setopt appendhistory autocd nomatch
 unsetopt beep
 bindkey -v
 export EDITOR=vim
-
 # }}}
 # =============================== External Files =========================== {{{
 source ~/.config/zsh/completion.zsh
@@ -25,7 +24,15 @@ source ~/.config/zsh/zsh_profiles/profiles.zsh
 # ~/.zprofile
 # }}}
 # ============================== Startup Commands ========================== {{{
-if [ $COLUMNS -ge 90 ] && [  $(tput lines) -ge 19 ]; then
+git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+if [[ $? -eq 0 ]]; then
+	in_git_repo=true
+else
+	in_git_repo=false
+fi
+if [[ $in_git_repo == true ]]; then
+	onefetch --no-palette --show-logo auto
+elif [ $COLUMNS -ge 90 ] && [  $(tput lines) -ge 19 ]; then
 	archey3 -c cyan
 fi
 
