@@ -315,7 +315,28 @@ function auto_activate_virtual_env() {
 }
 
 function cd() {
+	# Check if we were in a git repo
+	original_git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+	if [[ $? -eq 0 ]]; then
+		was_in_git_repo=true
+	else
+		was_in_git_repo=false
+	fi
+
 	builtin cd $1
+
+	# Check if we are now in a git repo
+	new_git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+	if [[ $? -eq 0 ]]; then
+		now_in_git_repo=true
+	else
+		now_in_git_repo=false
+	fi
+
+	# Show git information if we enter a new repo
+	if [[ ( $was_in_git_repo == true && $now_in_git_repo == true && $original_git_dir != $new_git_dir ) || ( $was_in_git_repo == false && $now_in_git_repo == true ) ]]; then
+		onefetch --no-palette --show-logo auto
+	fi
 
 	auto_activate_virtual_env
 
