@@ -80,7 +80,7 @@ alias cryptopen="sudo cryptsetup luksOpen /dev/sda1 secret && sudo mount /dev/ma
 alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 # alias python="bpython"
 # alias pi="bpython --interactive"
-alias pt="pytest --verbose"
+alias n="newsh"
 # }}}
 #  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"
