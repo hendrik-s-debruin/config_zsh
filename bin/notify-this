@@ -1,0 +1,64 @@
+#!/bin/env bash
+
+function help() {
+	echo "Usage: notify-this [--success SUCCESS_MSG] [--failure FAILURE_MSG] [--app-name APP_NAME] [--expire-time EXPIRE_TIME] -- command [arg [args ... ] ]"
+}
+
+success_msg="Success"
+failure_msg="Failure"
+app_name="notify-this"
+expire_time="0"
+
+# Step over all arguments and consume them
+while (( $# )); do
+	case $1 in
+		# Command seprator, consume it and stop consumption
+		# Remaining arguments are the subcommand and its arguments
+		"--")
+			shift
+			break
+		;;
+
+		"--success")
+			shift
+			success_msg=$1
+		;;
+
+		"--failure")
+			shift
+			failure_msg=$1
+		;;
+
+		"--app-name")
+			shift
+			app_name=$1
+		;;
+
+		"--expire-time")
+			shift
+			expire_time=$1
+		;;
+
+		"--help")
+			help
+			exit 0
+		;;
+
+		*)
+			echo Error: Unexpected argument \"$1\"
+			help
+			exit 1
+		;;
+	esac
+	shift
+done
+
+# Call the command that was passed after '--'
+$@
+
+# Notify
+if [[ $? -eq 0 ]]; then
+	notify-send --category=notify-this-success --app-name=$app_name --expire-time=$expire_time $success_msg
+else
+	notify-send --category=notify-this-failure --app-name=$app_name --expire-time=$expire_time $failure_msg
+fi

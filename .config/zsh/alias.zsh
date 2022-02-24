@@ -30,6 +30,7 @@ alias lsi="exa --icons --git-ignore"
 alias ccat='cat | highlight -O ansi'
 alias tree="exa --tree --icons --git-ignore"
 alias treeless="tree | less"
+alias yay="notify-this --app-name yay -- /bin/yay"
 # }}}
 #  =================================== Tools =============================== {{{
 alias calculator='octave-cli'
