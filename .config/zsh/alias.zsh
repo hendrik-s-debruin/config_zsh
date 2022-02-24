@@ -81,6 +81,7 @@ alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 # alias python="bpython"
 # alias pi="bpython --interactive"
 alias n="newsh"
+alias ct="notify-this --success 'tests passed' --failure 'tests failed' --app-name cargo -- cargo test"
 # }}}
 #  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"
