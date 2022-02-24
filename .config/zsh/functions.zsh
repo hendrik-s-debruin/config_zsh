@@ -344,34 +344,77 @@ function cd() {
 	COLUMNS=80 ls -x
 }
 
-function notify_this() {
-	if [[ $# -lt 3 ]]; then
-		echo "Error: usage: cmd [[arg] ...] success_msg error_msg"
-		return 1
-	fi
+function notify-this() {
+	function help() {
+		echo "Usage: notify-this [--success SUCCESS_MSG] [--failure FAILURE_MSG] [--app-name APP_NAME] [--expire-time EXPIRE_TIME] -- command [arg [args ... ] ]"
+	}
 
-	num_commands=$#
-	success_msg_idx=$((num_commands - 1))
-	error_msg_idx=$num_commands
-	last_arg_idx=$((success_msg_idx - 1))
+	success_msg="Success"
+	failure_msg="Failure"
+	app_name="notify-this"
+	expire_time="0"
 
-	# Call cmd [[arg] ...]
-	${@:1:$last_arg_idx}
+	# Step over all arguments and consume them
+	while (( $# )); do
+		case $1 in
+			# Command seprator, consume it and stop consumption
+			# Remaining arguments are the subcommand and its arguments
+			"--")
+				shift
+				break
+			;;
+
+			"--success")
+				shift
+				success_msg=$1
+			;;
+
+			"--failure")
+				shift
+				failure_msg=$1
+			;;
+
+			"--app-name")
+				shift
+				app_name=$1
+			;;
+
+			"--expire-time")
+				shift
+				expire_time=$1
+			;;
+
+			"--help")
+				help
+				return 0
+			;;
+
+			*)
+				echo Error: Unexpected argument \"$1\"
+				help
+				return 1
+			;;
+		esac
+		shift
+	done
+
+	# Call the command that was passed after '--'
+	$@
 
 	# Notify
 	if [[ $? -eq 0 ]]; then
-		notify-send ${@[$success_msg_idx]}
+		notify-send --category=notify-this-success --app-name=$app_name --expire-time=$expire_time $success_msg
 	else
-		notify-send --urgency=critical ${@[$error_msg_idx]}
+		notify-send --category=notify-this-failure --app-name=$app_name --expire-time=$expire_time $failure_msg
 	fi
 }
 
 function pt() {
-	notify_this pytest --verbose $@ 'pytest tests succeeded' 'pytest tests failed'
+	notify-this --app-name pytest --success "tests passed" --failure "tests failed" -- pytest --verbose $@
 }
 
 function ptt() {
-	notify_this pytest --verbose -n auto $@ 'pytest tests succeeded' 'pytest tests failed'
+	pt -n auto $@
 }
 
 function show_startup_header() {
