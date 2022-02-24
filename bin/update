@@ -17,4 +17,4 @@ if [[ $news ]]; then
 fi
 
 # Run the update command
-yay -Syu --sudoloop
+notify-this --success Done --failure Failed --app-name Updates -- yay -Syu --sudoloop
