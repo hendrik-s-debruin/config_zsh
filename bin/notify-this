@@ -58,7 +58,7 @@ $@
 
 # Notify
 if [[ $? -eq 0 ]]; then
-	notify-send --category=notify-this-success --app-name=$app_name --expire-time=$expire_time $success_msg
+	notify-send --category=notify-this-success --app-name=$app_name --expire-time=$expire_time "$success_msg"
 else
-	notify-send --category=notify-this-failure --app-name=$app_name --expire-time=$expire_time $failure_msg
+	notify-send --category=notify-this-failure --app-name=$app_name --expire-time=$expire_time "$failure_msg"
 fi
