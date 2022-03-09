@@ -31,6 +31,10 @@ alias ccat='cat | highlight -O ansi'
 alias tree="exa --tree --icons --git-ignore"
 alias treeless="tree | less"
 alias yay="notify-this --app-name yay -- /bin/yay"
+alias cargo="notify-this --app-name cargo -- cargo"
+alias rustup="notify-this --app-name rustup -- rustup"
+alias ct='notify-this --success "tests passed" --failure "tests failed" --app-name cargo -- cargo test'
+alias pytest="notify-this --app-name pytest -- pytest"
 # }}}
 #  =================================== Tools =============================== {{{
 alias calculator='octave-cli'
@@ -82,7 +86,6 @@ alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 # alias python="bpython"
 # alias pi="bpython --interactive"
 alias n="newsh"
-alias ct="notify-this --success 'tests passed' --failure 'tests failed' --app-name cargo -- cargo test"
 # }}}
 #  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"
