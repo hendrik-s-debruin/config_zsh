@@ -372,3 +372,11 @@ function show_startup_header() {
 function explain() {
 	rustc --explain E$1
 }
+
+function markdown_view() {
+	if [ $# -ne 1 ]; then
+		echo "Usage: $0 <file_name>"
+		return 1
+	fi
+	cat $1 | pandoc -f markdown -t pdf | zathura - >/dev/null 2>/dev/null &
+}

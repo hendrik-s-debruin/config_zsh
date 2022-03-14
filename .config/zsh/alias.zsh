@@ -86,6 +86,7 @@ alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 # alias python="bpython"
 # alias pi="bpython --interactive"
 alias n="newsh"
+alias md="markdown_view"
 # }}}
 #  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"
