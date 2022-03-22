@@ -54,6 +54,7 @@ alias d="vimdiff"
 alias h="htop"
 alias wl="~/.config/wacom/setup left"
 alias wr="~/.config/wacom/setup right"
+alias lzd="lazydocker"
 # }}}
 #  ================================ Convenience ============================ {{{
 alias rdoc="rustup doc --book </dev/null &>/dev/null &; disown"
