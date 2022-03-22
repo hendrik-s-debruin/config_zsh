@@ -19,4 +19,5 @@ fi
 
 # Run the update commands
 notify-this --suppress-success-msg --failure "System Update Failed" --app-name Updates -- yay -Syu --sudoloop
+notify-this --suppress-success-msg --failure "Cargo bin update failed" --app-name Updates -- cargo install-update --all
 notify-this --success "Done" --failure "Rust Updates Failed" --app-name Updates -- rustup update
