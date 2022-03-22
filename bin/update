@@ -1,4 +1,5 @@
 #!/bin/env bash
+set -e
 
 # IF not running inside of tmux, launch tmux and rerun this script
 if [[ "$TMUX" == "" ]]; then
@@ -16,5 +17,6 @@ if [[ $news ]]; then
 	fi
 fi
 
-# Run the update command
-notify-this --success Done --failure Failed --app-name Updates -- yay -Syu --sudoloop
+# Run the update commands
+notify-this --suppress-success-msg --failure "System Update Failed" --app-name Updates -- yay -Syu --sudoloop
+notify-this --success "Done" --failure "Rust Updates Failed" --app-name Updates -- rustup update

@@ -1,13 +1,15 @@
 #!/bin/env bash
 
 function help() {
-	echo "Usage: notify-this [--success SUCCESS_MSG] [--failure FAILURE_MSG] [--app-name APP_NAME] [--expire-time EXPIRE_TIME] -- command [arg [args ... ] ]"
+	echo "Usage: notify-this [--suppress-success-msg] [--suppress-failure-message] [--success SUCCESS_MSG] [--failure FAILURE_MSG] [--app-name APP_NAME] [--expire-time EXPIRE_TIME] -- command [arg [args ... ] ]"
 }
 
 success_msg="Success"
 failure_msg="Failure"
 app_name="notify-this"
 expire_time="0"
+should_display_success=true
+should_display_failure=true
 
 # Step over all arguments and consume them
 while (( $# )); do
@@ -24,9 +26,17 @@ while (( $# )); do
 			success_msg=$1
 		;;
 
+		"--suppress-success-msg")
+			should_display_success=false
+		;;
+
 		"--failure")
 			shift
 			failure_msg=$1
+		;;
+
+		"--suppress-failure-message")
+			should_display_failure=false
 		;;
 
 		"--app-name")
@@ -56,9 +66,13 @@ done
 # Call the command that was passed after '--'
 $@
 
+exit_status=$?
+
 # Notify
-if [[ $? -eq 0 ]]; then
+if [[ $exit_status -eq 0 && $should_display_success = true ]]; then
 	notify-send --category=notify-this-success --app-name=$app_name --expire-time=$expire_time "$success_msg"
-else
+elif [[ $exit_status -ne 0 && $should_display_failure = true ]]; then
 	notify-send --category=notify-this-failure --app-name=$app_name --expire-time=$expire_time "$failure_msg"
 fi
+
+exit $exit_status
