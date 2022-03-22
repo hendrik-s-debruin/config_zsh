@@ -35,6 +35,7 @@ alias cargo="notify-this --app-name cargo -- cargo"
 alias rustup="notify-this --app-name rustup -- rustup"
 alias ct='notify-this --success "tests passed" --failure "tests failed" --app-name cargo -- cargo test'
 alias pytest="notify-this --app-name pytest -- pytest"
+alias go="notify-this --app-name go -- go"
 # }}}
 #  =================================== Tools =============================== {{{
 alias calculator='octave-cli'
