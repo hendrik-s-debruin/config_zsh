@@ -71,7 +71,7 @@ alias copy='xclip -selection clipboard'
 alias xmod='xmodmap ~/.Xmodmap'
 alias CAPS='xdotool key Caps_Lock'
 alias caps='CAPS'
-alias k='figlet k | lolcat'
+alias k='figlet kkkkk | lolcat --freq=0.5'
 alias grsr='git log --oneline --graph --decorate --branches --remotes'
 alias lines="wc -l"
 alias news="yay --show --news"
@@ -89,6 +89,7 @@ alias cryptclose="sudo umount /mnt/secret && sudo cryptsetup luksClose secret"
 # alias pi="bpython --interactive"
 alias n="newsh"
 alias md="markdown_view"
+alias shh="ssh"
 # }}}
 #  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"
