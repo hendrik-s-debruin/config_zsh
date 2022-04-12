@@ -10,6 +10,7 @@ app_name="notify-this"
 expire_time="0"
 should_display_success=true
 should_display_failure=true
+verbose=false
 
 # Step over all arguments and consume them
 while (( $# )); do
@@ -54,6 +55,10 @@ while (( $# )); do
 			exit 0
 		;;
 
+		"--verbose")
+			verbose=true
+		;;
+
 		*)
 			echo Error: Unexpected argument \"$1\"
 			help
@@ -70,6 +75,9 @@ exit_status=$?
 
 # Notify
 if [[ $exit_status -eq 0 && $should_display_success = true ]]; then
+	if [[ $verbose = true ]]; then
+		figlet Success! | lolcat
+	fi
 	notify-send --category=notify-this-success --app-name=$app_name --expire-time=$expire_time "$success_msg"
 elif [[ $exit_status -ne 0 && $should_display_failure = true ]]; then
 	notify-send --category=notify-this-failure --app-name=$app_name --expire-time=$expire_time "$failure_msg"
