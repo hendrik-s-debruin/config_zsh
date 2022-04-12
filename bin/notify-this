@@ -76,7 +76,7 @@ exit_status=$?
 # Notify
 if [[ $exit_status -eq 0 && $should_display_success = true ]]; then
 	if [[ $verbose = true ]]; then
-		figlet Success! | lolcat
+		figlet Success! | lolcat --animate --duration 1 --speed 20
 	fi
 	notify-send --category=notify-this-success --app-name=$app_name --expire-time=$expire_time "$success_msg"
 elif [[ $exit_status -ne 0 && $should_display_failure = true ]]; then
