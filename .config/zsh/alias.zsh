@@ -22,6 +22,7 @@ alias quterc="vim ~/.config/qutebrowser/config.py"
 alias alacrittyrc="vim ~/.config/alacritty/alacritty.yml"
 alias qtilerc="vim ~/.config/qtile/config.py"
 alias dunstrc="vim ~/.config/dunst/dunstrc"
+alias kittyrc="vim ~/.config/kitty/kitty.conf"
 # }}}
 #  ======================== Prettify standard commands ===================== {{{
 alias grep='grep --colour'
