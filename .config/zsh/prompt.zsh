@@ -2,7 +2,7 @@
 
 setopt PROMPT_SUBST
 
-PS1='$(python ~/.config/zsh/prompt.py $COLUMNS $?)'
+PS1='$(/sbin/python3 ~/.config/zsh/prompt.py $COLUMNS $?)'
 
 # TODO port this
 # function prompt_job_count {
@@ -25,16 +25,5 @@ PS1='$(python ~/.config/zsh/prompt.py $COLUMNS $?)'
 # 		# echo $(color_string ${smileys[$index]} bf616a)" "
 # 		echo "%{$fg[red]%}${smileys[$index]}"
 
-# 	fi
-# }
-
-# TODO port this
-# # ------------------------------------------------------------------------------
-# # Python Virtual Environment
-# # ------------------------------------------------------------------------------
-# function prompt_python_venv {
-# 	if [[ "$VIRTUAL_ENV" != "" ]]; then
-# 		venv_name=$(basename $VIRTUAL_ENV)
-# 		echo "%{$fg[white]%} $venv_name"
 # 	fi
 # }

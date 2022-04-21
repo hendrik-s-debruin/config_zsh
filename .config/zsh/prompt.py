@@ -109,6 +109,15 @@ def prompt_host() -> PromptEntry:
     else:
         return PromptEntry("@ " + os.uname()[1], red)
 
+def prompt_venv() -> PromptEntry:
+    venv = os.environ.get("VIRTUAL_ENV")
+
+    if venv is None:
+        return PromptEntry("")
+
+    return PromptEntry(" " + os.path.basename(venv), white)
+
+
 # }}}
 
 #  ================================== Layout =============================== {{{
@@ -123,11 +132,12 @@ class PromptLayoutEngine:
     def __init__(self):
         self.elements: List[PromptLayoutEngine.PromptSection] = []
 
-        self._add_element(prompt_user(), 2)
-        self._add_element(prompt_host(), 5)
-        self._add_element(prompt_cwd(), 3)
+        self._add_element(prompt_user(), 3)
+        self._add_element(prompt_host(), 6)
+        self._add_element(prompt_cwd(), 4)
         self._add_element(prompt_git_icon(), 1)
-        self._add_element(prompt_git(), 4)
+        self._add_element(prompt_git(), 5)
+        self._add_element(prompt_venv(), 2)
         self._add_element(prompt_char(), 0)
 
         self.elements = list(filter(lambda x: x.entry.len > 0, self.elements))
@@ -137,17 +147,15 @@ class PromptLayoutEngine:
             PromptLayoutEngine.PromptSection(element, len(self.elements), priority)
         )
 
+    # TODO find a better algorithm if this one does not perform well enough
     def build_prompt(self, available_cols: int):
         self.elements = sorted(self.elements, key=lambda x: x.priority)
 
-        # NOTE this is a dangerous loop, but I'm too lazy right now to check for
-        # infinite loop conditions
         while self._find_prompt_len(self.elements) > available_cols:
             self.elements.pop()
 
-        # TODO add back elements
-
         self.elements = sorted(self.elements, key=lambda x: x.position)
+
         prompt: str = ""
         for element in self.elements:
             prompt += element.entry.entry + " "
