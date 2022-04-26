@@ -16,7 +16,7 @@ fi
 # Launch the terminals
 let INDEX=0
 while [ $INDEX -lt $MAX ]; do
-	RUN=$startup_command alacritty >/dev/null 2>&1 &
+	RUN=$startup_command kitty >/dev/null 2>&1 &
 	disown
 	let INDEX=$INDEX+1
 done
