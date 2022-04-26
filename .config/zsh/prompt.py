@@ -115,7 +115,15 @@ def prompt_venv() -> PromptEntry:
     if venv is None:
         return PromptEntry("")
 
-    return PromptEntry(" " + os.path.basename(venv), white)
+    return PromptEntry(os.path.basename(venv), white)
+
+def prompt_venv_icon() -> PromptEntry:
+    venv = os.environ.get("VIRTUAL_ENV")
+
+    if venv is None:
+        return PromptEntry("")
+
+    return PromptEntry("", white)
 
 
 # }}}
@@ -132,12 +140,13 @@ class PromptLayoutEngine:
     def __init__(self):
         self.elements: List[PromptLayoutEngine.PromptSection] = []
 
-        self._add_element(prompt_user(), 3)
-        self._add_element(prompt_host(), 6)
-        self._add_element(prompt_cwd(), 4)
+        self._add_element(prompt_user(), 4)
+        self._add_element(prompt_host(), 7)
+        self._add_element(prompt_cwd(), 5)
         self._add_element(prompt_git_icon(), 1)
-        self._add_element(prompt_git(), 5)
-        self._add_element(prompt_venv(), 2)
+        self._add_element(prompt_git(), 6)
+        self._add_element(prompt_venv_icon(), 2)
+        self._add_element(prompt_venv(), 3)
         self._add_element(prompt_char(), 0)
 
         self.elements = list(filter(lambda x: x.entry.len > 0, self.elements))
