@@ -148,6 +148,20 @@ def prompt_emoji() -> PromptEntry:
         icon = icons[random.randrange(len(icons))].strip()
         return PromptEntry(icon, red)
 
+def prompt_bookmark() -> PromptEntry:
+    try:
+        with open(os.path.expanduser("~/.config/zsh/bookmarks")) as f:
+            lines = f.readlines()
+            cwd = os.getcwd()
+            for line in lines:
+                bookmark, location = line.strip().split(":", 1)
+                if cwd == location:
+                    return PromptEntry(" " + bookmark)
+    except:
+        pass
+
+    return PromptEntry("")
+
 
 # }}}
 
@@ -166,6 +180,7 @@ class PromptLayoutEngine:
         self._add_element(prompt_user(), 4)
         self._add_element(prompt_host(), 7)
         self._add_element(prompt_cwd(), 5)
+        self._add_element(prompt_bookmark(), 9)
         self._add_element(prompt_git_icon(), 1)
         self._add_element(prompt_git(), 6)
         self._add_element(prompt_venv_icon(), 2)
