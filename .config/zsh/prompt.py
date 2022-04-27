@@ -4,7 +4,7 @@
 from __future__ import annotations
 import os
 import git
-import sys
+import random
 from typing import List
 from argparse import ArgumentParser, Namespace
 # }}}
@@ -66,7 +66,7 @@ def prompt_cwd() -> PromptEntry:
 
 
 def prompt_char() -> PromptEntry:
-    if get_success():
+    if last_command_successful():
         color = bright_green
     else:
         color = bright_red
@@ -103,14 +103,14 @@ def prompt_git_icon() -> PromptEntry:
 
 
 def prompt_user() -> PromptEntry:
-    if get_success():
+    if last_command_successful():
         return PromptEntry(os.getlogin())
     else:
         return PromptEntry(os.getlogin(), red)
 
 
 def prompt_host() -> PromptEntry:
-    if get_success():
+    if last_command_successful():
         return PromptEntry("@ " + os.uname()[1])
     else:
         return PromptEntry("@ " + os.uname()[1], red)
@@ -139,6 +139,15 @@ def prompt_jobs() -> PromptEntry:
 
     return PromptEntry(f"[{jobs}]", yellow)
 
+def prompt_emoji() -> PromptEntry:
+    if last_command_successful():
+        return PromptEntry("")
+
+    with open(os.path.expanduser("~/.config/zsh/prompt_on_error")) as f:
+        icons = f.readlines()
+        icon = icons[random.randrange(len(icons))].strip()
+        return PromptEntry(icon, red)
+
 
 # }}}
 
@@ -162,6 +171,7 @@ class PromptLayoutEngine:
         self._add_element(prompt_venv_icon(), 2)
         self._add_element(prompt_venv(), 3)
         self._add_element(prompt_jobs(), 7)
+        self._add_element(prompt_emoji(), 8)
         self._add_element(prompt_char(), 0)
 
         self.elements = list(filter(lambda x: x.entry.len > 0, self.elements))
@@ -213,7 +223,7 @@ args: Namespace = Namespace()
 def get_cols() -> int:
     return args.cols
 
-def get_success() -> bool:
+def last_command_successful() -> bool:
     return args.success_code == 0
 
 def get_job_count() -> int:
