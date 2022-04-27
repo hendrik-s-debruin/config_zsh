@@ -9,30 +9,35 @@ from typing import List
 # }}}
 
 #  ================================== Colors =============================== {{{
-black = "\033[0;30m"
-red = "\033[0;31m"
-green = "\033[0;32m"
-yellow = "\033[0;33m"
-blue = "\033[0;34m"
-magenta = "\033[0;35m"
-cyan = "\033[0;36m"
-white = "\033[0;37m"
-bright_black = "\033[0;90m"
-bright_red = "\033[0;91m"
-bright_green = "\033[0;92m"
-bright_yellow = "\033[0;93m"
-bright_blue = "\033[0;94m"
-bright_magenta = "\033[0;95m"
-bright_cyan = "\033[0;96m"
-bright_white = "\033[0;97m"
+class Color:
+    def __init__(self, code: str):
+        self._code = code
 
-reset = "\033[0m"
+    def apply(self, text: str) -> str:
+        return '%{' + self._code + '%}' + text
+
+black          =  Color("\033[30m")
+red            =  Color("\033[31m")
+green          =  Color("\033[32m")
+yellow         =  Color("\033[33m")
+blue           =  Color("\033[34m")
+magenta        =  Color("\033[35m")
+cyan           =  Color("\033[36m")
+white          =  Color("\033[37m")
+bright_black   =  Color("\033[90m")
+bright_red     =  Color("\033[91m")
+bright_green   =  Color("\033[92m")
+bright_yellow  =  Color("\033[93m")
+bright_blue    =  Color("\033[94m")
+bright_magenta =  Color("\033[95m")
+bright_cyan    =  Color("\033[96m")
+bright_white   =  Color("\033[97m")
 # }}}
 
 #  ================================ PromptEntry ============================ {{{
 class PromptEntry:
-    def __init__(self, entry: str, color: str = bright_white):
-        self.entry: str = color + entry + reset
+    def __init__(self, entry: str, color: Color = bright_white):
+        self.entry: str = color.apply(entry)
         self.len: int = len(entry)
 
 def prompt_cwd() -> PromptEntry:
