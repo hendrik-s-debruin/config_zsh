@@ -6,6 +6,7 @@ import os
 import git
 import sys
 from typing import List
+from argparse import ArgumentParser, Namespace
 # }}}
 
 #  ================================== Colors =============================== {{{
@@ -130,6 +131,14 @@ def prompt_venv_icon() -> PromptEntry:
 
     return PromptEntry("", white)
 
+def prompt_jobs() -> PromptEntry:
+    jobs = get_job_count()
+
+    if jobs == 0:
+        return PromptEntry("")
+
+    return PromptEntry(f"[{jobs}]", yellow)
+
 
 # }}}
 
@@ -152,6 +161,7 @@ class PromptLayoutEngine:
         self._add_element(prompt_git(), 6)
         self._add_element(prompt_venv_icon(), 2)
         self._add_element(prompt_venv(), 3)
+        self._add_element(prompt_jobs(), 7)
         self._add_element(prompt_char(), 0)
 
         self.elements = list(filter(lambda x: x.entry.len > 0, self.elements))
@@ -188,21 +198,6 @@ class PromptLayoutEngine:
         return length
 # }}}
 
-#  ============================= Argument Passing ========================== {{{
-# TODO improve this hacky argument passing
-def get_cols() -> int:
-    try:
-        return int(sys.argv[1])
-    except:
-        return 100
-
-
-def get_success() -> bool:
-    try:
-        return int(sys.argv[2]) == 0
-    except:
-        return False
-# }}}
 
 #  ============================ Interactive Testing ======================== {{{
 def demo():
@@ -210,9 +205,37 @@ def demo():
     for i in range(100, 0, -1):
         print(prompt_builder.build_prompt(i))
 # }}}
-
 #  =================================== main ================================ {{{
+
+#  ============================= Argument Passing ========================== {{{
+args: Namespace = Namespace()
+
+def get_cols() -> int:
+    return args.cols
+
+def get_success() -> bool:
+    return args.success_code == 0
+
+def get_job_count() -> int:
+    return args.jobs
+# }}}
+
 if __name__ == "__main__":
-    prompt_builder = PromptLayoutEngine()
-    print(prompt_builder.build_prompt(get_cols()))
+    try:
+        parser = ArgumentParser()
+        parser.add_argument("--cols",         type=int, required=True)
+        parser.add_argument("--success_code", type=int, required=True)
+        parser.add_argument("--jobs",         type=int, required=True)
+        args = parser.parse_args()
+
+        prompt_builder = PromptLayoutEngine()
+        print(prompt_builder.build_prompt(get_cols()))
+
+    except Exception as e:
+        # Fallback emergency prompt in case of error in the script
+        print(f"Error: {e}")
+        print("\n[zsh] > ")
+
+    except: # Argparse throws its own thing apparently
+        print("\n[zsh] > ")
 # }}}

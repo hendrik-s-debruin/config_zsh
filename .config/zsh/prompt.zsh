@@ -2,16 +2,7 @@
 
 setopt PROMPT_SUBST
 
-PS1='$(/sbin/python3 ~/.config/zsh/prompt.py $COLUMNS $?)'
-
-# TODO port this
-# function prompt_job_count {
-# 	local cnt=$(jobs | wc -l)
-# 	if [[ $cnt != 0 ]]; then
-# 		# echo $(color_string "[$cnt]" ebcb8b)
-# 		echo "%{$fg[yellow]%}[$cnt]"
-# 	fi
-# }
+PS1='$(/sbin/python3 ~/.config/zsh/prompt.py --cols $COLUMNS --success_code $? --jobs $(jobs | wc -l))'
 
 # TODO port this
 # function prompt_emoji {
