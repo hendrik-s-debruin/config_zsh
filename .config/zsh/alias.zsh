@@ -33,6 +33,7 @@ alias tree="exa --tree --icons --git-ignore"
 alias treeless="tree | less"
 alias yay="notify-this --app-name yay -- /bin/yay"
 alias cargo="notify-this --app-name cargo --verbose -- cargo"
+alias make="notify-this --app-name make --verbose -- make"
 alias rustup="notify-this --app-name rustup -- rustup"
 alias ct='notify-this --success "tests passed" --failure "tests failed" --app-name cargo -- cargo test'
 alias pytest="notify-this --app-name pytest -- pytest"
@@ -95,6 +96,7 @@ alias pc="pre-commit"
 alias n="newsh"
 alias md="markdown_view"
 alias shh="ssh"
+alias kkk="kill %% && fg"
 # }}}
 #  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"
