@@ -27,3 +27,5 @@ source ~/.config/zsh/fzf-tab/fzf-tab.plugin.zsh
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # }}}
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
