@@ -1,10 +1,5 @@
 # This file configures the tab completion of the zsh shell
 
-# plugin to add predictive suggestions
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Fzf completions
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
 # Search history
 search_history() {
@@ -18,6 +13,16 @@ bindkey '^r' search_history
 
 autoload -Uz compinit
 compinit
+
+# NOTE: this needs to be kept after compinit, but before other plugins are
+# loaded
+source ~/.config/zsh/fzf-tab/fzf-tab.plugin.zsh
+
+# plugin to add predictive suggestions
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Fzf completions
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*' auto-description 'specyify: %d'

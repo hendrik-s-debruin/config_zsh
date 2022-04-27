@@ -7,3 +7,6 @@
 [submodule ".config/zsh/zsh_profiles"]
 	path = .config/zsh/zsh_profiles
 	url = https://github.com/hendrik-s-debruin/zsh_profiles.git
+[submodule ".config/zsh/fzf-tab"]
+	path = .config/zsh/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab.git
