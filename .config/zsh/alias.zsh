@@ -97,6 +97,8 @@ alias n="newsh"
 alias md="markdown_view"
 alias shh="ssh"
 alias kkk="kill %% && fg"
+alias ch="find | fzf"
+alias vch='vim $(ch)'
 # }}}
 #  ================================== System =============================== {{{
 alias reboot="~/bin/reboot"
