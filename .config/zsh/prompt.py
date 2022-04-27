@@ -76,7 +76,7 @@ def prompt_char() -> PromptEntry:
 # TODO do not duplicate code with prompt_git_icon
 def prompt_git() -> PromptEntry:
     try:
-        repo = git.Repo(os.getcwd())
+        repo = git.Repo(os.getcwd(), search_parent_directories=True)
         branch_name = repo.active_branch.name
         if repo.is_dirty():
             color = bright_red
@@ -91,7 +91,7 @@ def prompt_git() -> PromptEntry:
 # TODO do not duplicate code with prompt_git
 def prompt_git_icon() -> PromptEntry:
     try:
-        repo = git.Repo(os.getcwd())
+        repo = git.Repo(os.getcwd(), search_parent_directories=True)
         if repo.is_dirty():
             color = bright_red
         else:
