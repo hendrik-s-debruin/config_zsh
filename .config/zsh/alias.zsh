@@ -62,6 +62,7 @@ alias h="htop"
 alias wl="~/.config/wacom/setup left"
 alias wr="~/.config/wacom/setup right"
 alias lzd="lazydocker"
+alias groot='cd $(git rev-parse --show-toplevel)'
 # }}}
 #  ================================ Convenience ============================ {{{
 alias rdoc="rustup doc --book </dev/null &>/dev/null &; disown"
