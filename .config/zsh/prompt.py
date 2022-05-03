@@ -162,6 +162,13 @@ def prompt_bookmark() -> PromptEntry:
 
     return PromptEntry("")
 
+def prompt_exit_code() -> PromptEntry:
+    exit_code = last_exit_code()
+    if exit_code == 0:
+        return PromptEntry("")
+    else:
+        return PromptEntry("[" + str(exit_code) + "]", red)
+
 
 # }}}
 
@@ -187,6 +194,7 @@ class PromptLayoutEngine:
         self._add_element(prompt_venv(), 3)
         self._add_element(prompt_jobs(), 7)
         self._add_element(prompt_emoji(), 8)
+        self._add_element(prompt_exit_code(), 10)
         self._add_element(prompt_char(), 0)
 
         self.elements = list(filter(lambda x: x.entry.len > 0, self.elements))
@@ -223,16 +231,17 @@ class PromptLayoutEngine:
         return length
 # }}}
 
-
 #  ============================ Interactive Testing ======================== {{{
 def demo():
     prompt_builder = PromptLayoutEngine()
     for i in range(100, 0, -1):
         print(prompt_builder.build_prompt(i))
 # }}}
+
 #  =================================== main ================================ {{{
 
 #  ============================= Argument Passing ========================== {{{
+
 args: Namespace = Namespace()
 
 def get_cols() -> int:
@@ -243,6 +252,10 @@ def last_command_successful() -> bool:
 
 def get_job_count() -> int:
     return args.jobs
+
+def last_exit_code() -> int:
+    return args.success_code
+
 # }}}
 
 if __name__ == "__main__":
@@ -263,4 +276,5 @@ if __name__ == "__main__":
 
     except: # Argparse throws its own thing apparently
         print("\n[zsh] > ")
+
 # }}}
