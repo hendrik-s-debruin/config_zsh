@@ -288,6 +288,10 @@ function stopwatch()
 }
 # }}}
 
+function drm() {
+	docker rm -f $(docker ps -q)
+}
+
 function auto_activate_virtual_env() {
 	# Check if we are in a git repo
 	git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
@@ -379,4 +383,8 @@ function markdown_view() {
 		return 1
 	fi
 	cat $1 | pandoc -f markdown -t pdf | zathura - >/dev/null 2>/dev/null &
+}
+
+function vf() {
+	vim $(which $1)
 }
