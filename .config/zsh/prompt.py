@@ -87,6 +87,12 @@ def prompt_git() -> PromptEntry:
     except git.InvalidGitRepositoryError:
         return PromptEntry("")
 
+    # Something bad happend with the Repo instantiation. Seems to happen in
+    # submodules and maybe rebasing or merging? TODO: figure out if this can be
+    # fixed
+    except Exception:
+        return PromptEntry("[!]", magenta)
+
 
 # TODO do not duplicate code with prompt_git
 def prompt_git_icon() -> PromptEntry:
