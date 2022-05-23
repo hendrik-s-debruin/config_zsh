@@ -318,6 +318,22 @@ function auto_activate_virtual_env() {
 	fi
 }
 
+function onefetch() {
+	excludes=($(find . -name ".git" | sed 's_/\.git$__'))
+	for el in ${excludes[@]}
+	do
+		if [[ $el == '.' ]]; then
+			excludes=("${excludes[@]/$el}")
+		fi
+	done
+
+	if [[ ${#excludes[@]} == 0 ]]; then
+		/sbin/onefetch --no-palette --show-logo auto
+	else
+		/sbin/onefetch --no-palette --show-logo auto --exclude $excludes
+	fi
+}
+
 function cd() {
 	# Check if we were in a git repo
 	original_git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
@@ -339,7 +355,7 @@ function cd() {
 
 	# Show git information if we enter a new repo
 	if [[ ( $was_in_git_repo == true && $now_in_git_repo == true && $original_git_dir != $new_git_dir ) || ( $was_in_git_repo == false && $now_in_git_repo == true ) ]]; then
-		onefetch --no-palette --show-logo auto
+		onefetch
 	fi
 
 	auto_activate_virtual_env
@@ -364,7 +380,7 @@ function show_startup_header() {
 		in_git_repo=false
 	fi
 	if [[ $in_git_repo == true ]]; then
-		onefetch --no-palette --show-logo auto
+		onefetch
 	elif [ $COLUMNS -ge 90 ] && [  $(tput lines) -ge 19 ]; then
 		archey3 -c cyan
 	fi

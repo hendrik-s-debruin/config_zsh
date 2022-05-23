@@ -21,3 +21,5 @@ export MANPAGER=vimpager
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source virtualenvwrapper.sh
+
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
