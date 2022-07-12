@@ -404,3 +404,7 @@ function markdown_view() {
 function vf() {
 	vim $(which $1)
 }
+
+function fcat() {
+	cat $(which $1)
+}
