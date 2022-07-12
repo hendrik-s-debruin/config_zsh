@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 import git
 import random
+import subprocess
 from typing import List
 from argparse import ArgumentParser, Namespace
 # }}}
@@ -135,7 +136,15 @@ def prompt_venv_icon() -> PromptEntry:
     if venv is None:
         return PromptEntry("")
 
-    return PromptEntry("", white)
+    entry = ""
+    try:
+        version = subprocess.check_output(["python", "--version"]).decode("utf-8").strip()
+        version = version.replace("Python ", "")
+        entry = entry + " (" + version + ")"
+    except:
+        pass
+
+    return PromptEntry(entry, white)
 
 def prompt_jobs() -> PromptEntry:
     jobs = get_job_count()
