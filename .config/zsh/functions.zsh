@@ -343,7 +343,7 @@ function cd() {
 		was_in_git_repo=false
 	fi
 
-	builtin cd $1
+	builtin cd "$@"
 
 	# Check if we are now in a git repo
 	new_git_dir=$(git rev-parse --show-toplevel 2>/dev/null)
