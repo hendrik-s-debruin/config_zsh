@@ -108,6 +108,19 @@ def prompt_git_icon() -> PromptEntry:
     except git.InvalidGitRepositoryError:
         return PromptEntry("")
 
+# TODO do not duplicate git code
+def prompt_git_hash() -> PromptEntry:
+    try:
+        repo = git.Repo(os.getcwd(), search_parent_directories=True)
+        hash = repo.head.object.hexsha[0:7]
+        if repo.is_dirty():
+            color = bright_red
+        else:
+            color = green
+        return PromptEntry(hash, color)
+    except git.InvalidGitRepositoryError:
+        return PromptEntry("")
+
 
 def prompt_user() -> PromptEntry:
     if last_command_successful():
@@ -204,6 +217,7 @@ class PromptLayoutEngine:
         self._add_element(prompt_cwd(), 5)
         self._add_element(prompt_bookmark(), 9)
         self._add_element(prompt_git_icon(), 1)
+        self._add_element(prompt_git_hash(), 11)
         self._add_element(prompt_git(), 6)
         self._add_element(prompt_venv_icon(), 2)
         self._add_element(prompt_venv(), 3)
