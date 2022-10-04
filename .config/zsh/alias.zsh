@@ -1,15 +1,22 @@
 #  =============================== Reload Config =========================== {{{
+
 alias rebash='clear && source ~/.zshrc'
 alias rb="rebash"
+
 # }}}
+
 #  ============ Mimic commands from other command line applications ======== {{{
+
 alias quit="exit"
 alias :q="exit"
 alias :q!="exit"
 alias q="exit"
 alias clc="clear"
+
 # }}}
+
 #  ============================ Edit specific files ======================== {{{
+
 alias vimrc="vim ~/.vimrc"
 alias i3rc='vim ~/.config/i3/config'
 alias i3conf='i3rc'
@@ -24,8 +31,11 @@ alias qtilerc="vim ~/.config/qtile/config.py"
 alias dunstrc="vim ~/.config/dunst/dunstrc"
 alias kittyrc="vim ~/.config/kitty/kitty.conf"
 alias promptrc="vim ~/.config/zsh/prompt.py"
+
 # }}}
+
 #  ======================== Prettify standard commands ===================== {{{
+
 alias grep='grep --colour'
 alias ls="exa --icons --git"
 alias lsi="exa --icons --git-ignore"
@@ -42,8 +52,11 @@ alias go="notify-this --app-name go -- go"
 alias ssh-add="figlet ': (' | lolcat && ssh-add"
 alias shh-add=ssh-add
 alias sad=ssh-add
+
 # }}}
+
 #  =================================== Tools =============================== {{{
+
 alias calculator='octave-cli'
 alias calc='octave-cli'
 alias texlive="tllocalmgr"
@@ -64,8 +77,11 @@ alias wr="~/.config/wacom/setup right"
 alias lzd="lazydocker"
 alias groot='cd $(git rev-parse --show-toplevel)'
 alias prunedocker="docker stop $(docker ps -a -q) && docker system prune -a --volumes -f"
+
 # }}}
+
 #  ================================ Convenience ============================ {{{
+
 alias rdoc="rustup doc --book </dev/null &>/dev/null &; disown"
 alias rstd="rustup doc --std </dev/null &>/dev/null &; disown"
 alias gping="ping www.google.com"
@@ -103,15 +119,22 @@ alias kkk="kill %% && fg && reset"
 alias ch="find | fzf"
 alias vch='vim $(ch)'
 alias cm="cfgmgr"
+
 # }}}
+
 #  ================================== System =============================== {{{
+
 alias reboot="~/bin/reboot"
 alias hidemouse="unclutter -grab -idle 1 &"
 alias unhidemouse="killall unclutter"
 alias make!="make -j$(nproc)"
 # alias startx="ssh-agent startx"
 alias suspend="systemctl suspend"
+
 # }}}
+
 #  ==================================== SSH ================================ {{{
+
 alias ssh-keygen-comment="ssh-keygen -C $(whoami)@$(hostname)-$(date -I)"
+
 # }}}

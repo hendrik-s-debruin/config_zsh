@@ -1,4 +1,5 @@
 # ================================= Programming ============================ {{{
+
 python_venv_filename=.venv
 
 function mod() {
@@ -41,8 +42,11 @@ function venv() {
 	# Create the virtual environment
 	mkvirtualenv $@
 }
+
 # }}}
+
 # ============================ Startup and Shutdown ======================== {{{
+
 function shutdown() {
 	# Make sure TMUX isn't running in the background somewhere
 	tmux ls 2>> /dev/null 1>>/dev/null
@@ -69,8 +73,11 @@ function reboot() {
 
 	reboot
 }
+
 # }}}
+
 #  =========================== Sudo previous command ======================= {{{
+
 function please() {
 	cmd=$(fc -ln -1)
 	cmd="sudo "$cmd
@@ -80,8 +87,11 @@ function please() {
 		eval $cmd
 	fi
 }
+
 # }}}
+
 #  =============================== File Manager ============================ {{{
+
 function ranger() {
 	curdir=$(pwd)
 	choosedir_file=/tmp/RANGERDIR
@@ -95,8 +105,11 @@ function ranger() {
 	fi
 	rm $choosedir_file
 }
+
 # }}}
+
 #  =============================== Project Tree ============================ {{{
+
 function treeproj {
 	if ! proj_dir=$(git rev-parse --show-toplevel 2> /dev/null); then
 		echo not a project directory
@@ -105,13 +118,19 @@ function treeproj {
 	local ignore=$(cat $proj_dir"/.gitignore" | tr '\n' '|' | sed 's_/|_|_g' | sed 's/|$//')
 	tree -C -I $ignore
 }
+
 # }}}
+
 #  ====================== Make directory and change to it ================== {{{
+
 function chmk {
 	mkdir -p $1 && cd $1
 }
+
 # }}}
+
 #  ======================== Change to ranger bookmarks ===================== {{{
+
 function c {
 
 	local ranger_bookmarks="$HOME/.config/ranger/bookmarks"
@@ -174,8 +193,11 @@ _fzf_complete_c() {
 		cat $HOME/.config/zsh/bookmarks | awk -F ':' '{print $1}'
 	)
 }
+
 # }}}
+
 #  ============================== Create Bookmark ========================== {{{
+
 function m {
 
 	if [[ $@ == "" ]]; then
@@ -201,8 +223,11 @@ function m {
 		echo "$1:$(pwd)" >> $bookmarks_file
 	fi
 }
+
 # }}}
+
 #  =============================== Manpage Width =========================== {{{
+
 function man {
 	if [ $COLUMNS -gt 80 ]; then
 		COLUMNS=80 /usr/bin/man $@
@@ -210,8 +235,11 @@ function man {
 		/usr/bin/man $@
 	fi
 }
+
 # }}}
+
 #  ============================= Sorting by length ========================= {{{
+
 function lensort() {
 	if (( $# > 0 )) && [ $1 == "-r" ]
 	then
@@ -220,8 +248,11 @@ function lensort() {
 		awk '{ print length(), $0 | "sort -n -r | cut -d\\  -f2-" }'
 	fi
 }
+
 # }}}
+
 #  ========================= Find Symbols in Libraries ===================== {{{
+
 function findsym() {
 	if [[ $# -ne 1 ]]; then
 		echo "usage: findsym <sym>"
@@ -232,13 +263,19 @@ function findsym() {
 		nm $i 2>/dev/null | awk '{print "'$i' --- " $0}' | grep $1
 	done
 }
+
 # }}}
+
 #  ====================== Strip Comments from C/C++ files ================== {{{
+
 function cstrip() {
 	gcc -fpreprocessed -dD -E -P $1 | clang-format -style=file -fallback-style=LLVM
 }
+
 # }}}
+
 #  ====================== Execute command on file change =================== {{{
+
 function onchange() {
 	if [[ $# -eq 0 ]]; then
 		echo "Usage: onchange <filename> <command> [args ... ]"
@@ -248,8 +285,11 @@ function onchange() {
 		${@: 2}
 	done
 }
+
 # }}}
+
 #  ================================= Passwords ============================= {{{
+
 function passstore_encrypt() {
 	if [[ ! $# -eq 1 ]]; then
 		echo "Usage: passstore_encrypt <hash>"
@@ -261,8 +301,11 @@ function passstore_encrypt() {
 		gpg --sign --encrypt -r $HASH \
 		> pwd.tar.gz.gpg
 }
+
 # }}}
+
 #  ================================ Disk Usage ============================= {{{
+
 # Find high disk usage
 function duh() {
 	if [ $# -eq 0 ]; then
@@ -276,8 +319,11 @@ function duh() {
 		head -n $items |   \
 		awk '{print $2}'
 }
+
 # }}}
+
 #  ================================= Stopwatch ============================= {{{
+
 function stopwatch()
 {
 	date1=`date +%s`;
@@ -286,6 +332,7 @@ function stopwatch()
 		echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\n";
 	done
 }
+
 # }}}
 
 function drm() {
@@ -386,9 +433,6 @@ function show_startup_header() {
 	fi
 }
 
-# ==============================================================================
-# Rust
-# ==============================================================================
 function explain() {
 	rustc --explain E$1
 }
