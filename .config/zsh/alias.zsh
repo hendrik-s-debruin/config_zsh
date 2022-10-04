@@ -63,6 +63,7 @@ alias wl="~/.config/wacom/setup left"
 alias wr="~/.config/wacom/setup right"
 alias lzd="lazydocker"
 alias groot='cd $(git rev-parse --show-toplevel)'
+alias prunedocker="docker stop $(docker ps -a -q) && docker system prune -a --volumes -f"
 # }}}
 #  ================================ Convenience ============================ {{{
 alias rdoc="rustup doc --book </dev/null &>/dev/null &; disown"
