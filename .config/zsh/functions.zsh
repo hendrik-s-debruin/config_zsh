@@ -375,9 +375,9 @@ function onefetch() {
 	done
 
 	if [[ ${#excludes[@]} == 1 ]]; then
-		/sbin/onefetch --no-palette --show-logo auto
+		/sbin/onefetch --no-color-palette --show-logo auto
 	else
-		/sbin/onefetch --no-palette --show-logo auto --exclude $excludes
+		/sbin/onefetch --no-color-palette --show-logo auto --exclude $excludes
 	fi
 }
 
