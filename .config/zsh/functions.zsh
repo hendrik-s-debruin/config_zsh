@@ -100,8 +100,8 @@ function ranger() {
 
 	# Only change if we've chosen a new directory. This will avoid overwriting
 	# the history in `cd -` with the same directory
-	if [[ $choosedir != $curdir ]]; then
-		cd $(cat /tmp/RANGERDIR)
+	if [[ "$choosedir" != "$curdir" ]]; then
+		cd "$(cat /tmp/RANGERDIR)"
 	fi
 	rm $choosedir_file
 }
@@ -281,7 +281,7 @@ function onchange() {
 		echo "Usage: onchange <filename> <command> [args ... ]"
 		return -1
 	fi
-	while ! inotifywait -e modify $1; do
+	while inotifywait -e modify $1; do
 		${@: 2}
 	done
 }
