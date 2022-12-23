@@ -119,6 +119,7 @@ alias kkk="kill %% && fg && reset"
 alias ch="find | fzf"
 alias vch='vim $(ch)'
 alias cm="cfgmgr"
+alias sql="sudo -iu postgres"
 
 # }}}
 
