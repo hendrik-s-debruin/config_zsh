@@ -126,7 +126,11 @@ def prompt_git_tag() -> PromptEntry:
         repo = git.Repo(os.getcwd(), search_parent_directories=True)
         hash = repo.head.object.hexsha
         tags = repo.tags
-        tags = ", ".join([tag.name for tag in tags if tag.commit.hexsha == hash])
+        tags = [tag.name for tag in tags if tag.commit.hexsha == hash]
+        if len(tags) != 0:
+            tags = "[" + ", ".join(tags) + "]"
+        else:
+            tags = ""
         if repo.is_dirty():
             color = bright_red
         else:
