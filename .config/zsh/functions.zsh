@@ -282,6 +282,7 @@ function onchange() {
 		return -1
 	fi
 	while inotifywait -r -e modify $1; do
+		clear
 		${@: 2}
 	done
 }
@@ -375,9 +376,9 @@ function onefetch() {
 	done
 
 	if [[ ${#excludes[@]} == 1 ]]; then
-		/sbin/onefetch --no-color-palette --show-logo auto
+		/sbin/onefetch --no-color-palette
 	else
-		/sbin/onefetch --no-color-palette --show-logo auto --exclude $excludes
+		/sbin/onefetch --no-color-palette --exclude $excludes
 	fi
 }
 
