@@ -121,6 +121,21 @@ def prompt_git_hash() -> PromptEntry:
     except git.InvalidGitRepositoryError:
         return PromptEntry("")
 
+def prompt_git_tag() -> PromptEntry:
+    try:
+        repo = git.Repo(os.getcwd(), search_parent_directories=True)
+        hash = repo.head.object.hexsha
+        tags = repo.tags
+        tags = ", ".join([tag.name for tag in tags if tag.commit.hexsha == hash])
+        if repo.is_dirty():
+            color = bright_red
+        else:
+            color = green
+        return PromptEntry(tags, color)
+
+    except git.InvalidGitRepositoryError:
+        return PromptEntry("")
+
 
 def prompt_user() -> PromptEntry:
     if last_command_successful():
@@ -217,7 +232,8 @@ class PromptLayoutEngine:
         self._add_element(prompt_cwd(), 5)
         self._add_element(prompt_bookmark(), 9)
         self._add_element(prompt_git_icon(), 1)
-        self._add_element(prompt_git_hash(), 11)
+        self._add_element(prompt_git_hash(), 12)
+        self._add_element(prompt_git_tag(), 11)
         self._add_element(prompt_git(), 6)
         self._add_element(prompt_venv_icon(), 2)
         self._add_element(prompt_venv(), 3)
