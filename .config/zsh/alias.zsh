@@ -120,6 +120,9 @@ alias ch="find | fzf"
 alias vch='vim $(ch)'
 alias cm="cfgmgr"
 alias sql="sudo -iu postgres"
+alias b="bacon"
+alias venv8="venv -p $(which python3.8)"
+alias venv10="venv -p $(which python3.10)"
 
 # }}}
 
@@ -137,5 +140,6 @@ alias suspend="systemctl suspend"
 #  ==================================== SSH ================================ {{{
 
 alias ssh-keygen-comment="ssh-keygen -C $(whoami)@$(hostname)-$(date -I)"
+alias ssh="kitty +kitten ssh"
 
 # }}}
