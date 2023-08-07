@@ -37,6 +37,9 @@ source ~/.config/zsh/zsh_profiles/profiles.zsh
 show_startup_header
 auto_activate_virtual_env
 
+# create a scratch-pad directory
+mkdir -p /tmp/SCRATCHPAD
+
 # Call "RUN='command vargs...' zsh" to run a command on zsh start
 eval $RUN
 
