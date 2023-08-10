@@ -22,6 +22,7 @@ source ~/.config/zsh/prompt.zsh
 source ~/.config/zsh/dev.zsh
 source ~/.config/zsh/bindings.zsh
 source ~/.config/zsh/zsh_profiles/profiles.zsh
+source ~/.config/zsh/zsh-notify/notify.zsh
 
 # }}}
 
