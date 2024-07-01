@@ -2,13 +2,22 @@ ZSH_COMMAND_NOTIFY__THRESHOLD_TIME=60
 ZSH_COMMAND_NOTIFY__FAIL_CATEGORY="notify-this-failure"
 ZSH_COMMAND_NOTIFY__SUCCESS_CATEGORY="notify-this-success"
 ZSH_COMMAND_NOTIFY__IGNORE_COMMANDS=(
+	thunar
+	bacon
+	c
+	docker
+	git
+	htop
+	lazydocker
+	man
+	notify-this
+	nvim
+	onchange
 	ranger
 	ssh
-	vim
-	c
 	tmux
-	notify-this
-	git
+	vim
+	vimdiff
 )
 
 function _enable() {
@@ -49,7 +58,7 @@ function _end_tracking() {
 function _report_command_completed() {
 	local exit_code="$?"
 	local END_SECONDS="$(date "+%s")"
-	local duration=$(( $END_SECONDS - $ZSH_COMMAND_NOTIFY__START_TIME_SECONDS ))
+	local duration=$(( $END_SECONDS - $ZSH_COMMAND_NOTIFY__START_TIME_SECONDS )) 2>/dev/null
 
 	if $(_should_print_command "$ZSH_COMMAND_NOTIFY__COMMAND_EXPANDED"); then
 		if (( duration >= $ZSH_COMMAND_NOTIFY__THRESHOLD_TIME )); then

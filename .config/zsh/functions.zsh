@@ -281,6 +281,10 @@ function onchange() {
 		echo "Usage: onchange <filename> <command> [args ... ]"
 		return -1
 	fi
+
+	clear
+	${@: 2}
+
 	while inotifywait -r -e modify $1; do
 		clear
 		${@: 2}
